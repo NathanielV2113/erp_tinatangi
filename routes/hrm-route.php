@@ -24,4 +24,7 @@ Route::middleware(['isHrm'])->group(function () {
 
 
     Route::get('hrm/payroll', [HrmController::class, 'payroll'])->name('hrm.payroll');
+
+    Route::get('hrm/attendance', [HrmController::class, 'attendance'])->name('hrm.attendance');
+
 });
