@@ -22,4 +22,9 @@ class HrmController extends Controller
     public function payroll(){
         return view('modules.hrm.payroll.payroll');
     }
+    public function attendance(){
+        return view('modules.hrm.attendance.attendance');
+    }
+
+
 }

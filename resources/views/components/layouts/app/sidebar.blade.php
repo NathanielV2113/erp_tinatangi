@@ -37,6 +37,7 @@
                     <flux:navlist.item icon="home" :href="route('hrm')" :current="request()->routeIs('hrm')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                     <flux:navlist.item icon="user-group" :href="route('hrm.employees')" :current="request()->routeIs('hrm.employees')" wire:navigate>{{ __('Employees') }}</flux:navlist.item>
                     <flux:navlist.item icon="rectangle-stack" :href="route('hrm.departments')" :current="request()->routeIs('hrm.departments')" wire:navigate>{{ __('Departments') }}</flux:navlist.item>
+                    <flux:navlist.item icon="user" :href="route('hrm.attendance')" :current="request()->routeIs('hrm.attendance')" wire:navigate>{{ __('Attendance') }}</flux:navlist.item>
                     <flux:navlist.item icon="banknotes" :href="route('hrm.payroll')" :current="request()->routeIs('hrm.payroll')" wire:navigate>{{ __('Payroll') }}</flux:navlist.item>
                 </flux:navlist.group>
                 @endrole
