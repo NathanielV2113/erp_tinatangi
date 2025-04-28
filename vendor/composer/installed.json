@@ -6890,6 +6890,50 @@
             "install-path": "../staabm/side-effects-detector"
         },
         {
+            "name": "sweetalert2/laravel",
+            "version": "0.1.0",
+            "version_normalized": "0.1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sweetalert2/sweetalert2-laravel.git",
+                "reference": "dc4d153a767cbfeb698e1288ce30b6359d009716"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sweetalert2/sweetalert2-laravel/zipball/dc4d153a767cbfeb698e1288ce30b6359d009716",
+                "reference": "dc4d153a767cbfeb698e1288ce30b6359d009716",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^11.0 || ^12.0"
+            },
+            "time": "2025-04-23T06:44:32+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "SweetAlert2\\Laravel\\ServiceProvider"
+                    ]
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "SweetAlert2\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Official SweetAlert2 integration for Laravel framework",
+            "support": {
+                "issues": "https://github.com/sweetalert2/sweetalert2-laravel/issues",
+                "source": "https://github.com/sweetalert2/sweetalert2-laravel/tree/0.1.0"
+            },
+            "install-path": "../sweetalert2/laravel"
+        },
+        {
             "name": "symfony/clock",
             "version": "v7.2.0",
             "version_normalized": "7.2.0.0",

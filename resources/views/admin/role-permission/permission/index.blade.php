@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Permission List</h4>
-                        <a href="{{ url('admin/permissions/create') }}" class="btn btn-accent float-end">Add Permission</a>
+                        <a href="{{ url('admin/permissions/create') }}" class="btn btn-soft btn-accent float-end">Add Permission</a>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
@@ -23,8 +23,8 @@
                                     <tr>
                                         <td>{{ $permission->name }}</td>
                                         <td>
-                                            <a href="{{ route('edit.permissions', $permission ) }}" class="btn btn-success">Rename</a>
-                                            <a href="{{ url('admin/permissions/' . $permission->id . '/delete') }}" class="btn btn-secondary">Delete</a>
+                                            <a href="{{ route('edit.permissions', $permission ) }}" class="btn btn-soft btn-success">Rename</a>
+                                            <a href="{{ url('admin/permissions/' . $permission->id . '/delete') }}" class="btn btn-soft btn-secondary">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -1,10 +1,17 @@
 <x-layouts.app :title="__('Employee List')">
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            title: "{{ session('success') }}",
+            icon: 'success',
+            confirmButtonText: 'Okay'
+        });
+    </script>
+    @endif
+
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-12">
-                @if (session('status'))
-                <div class="alert alert-success">{{ session('status') }}</div>
-                @endif
                 <div class="bg-white dark:bg-amber-950 shadow-md rounded-lg p-6 ml-10">
                     <div class="flex w-full">
                         <div class="w-1/2">
@@ -33,19 +40,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $count = 0 ?>
-                                    @foreach ($employees as $employee)
+                                    @foreach ($employees as $index => $employee)
                                     <tr class="hover:bg-base-300">
-                                        <td>{{ ++$count }}</td>
+                                        <td>{{ $employees->firstItem() + $index }}</td>
                                         <td>{{ $employee->first_name . ' ' . $firstLetter = substr($employee->middle_name, 0, 1) . '. ' . $employee->last_name }}</td>
                                         <td>
                                             @foreach ($departments as $department)
                                             @if ($employee->department == $department->id)
                                             {{ $department->name }}
-                                            @break
-                                            @else
-                                            N/A
-                                            @break
                                             @endif
                                             @endforeach
                                         </td>
@@ -60,7 +62,7 @@
                                         @else
                                         <td>{{ $employee->phone }}</td>
                                         @endif
-                                        
+
                                         @if ($employee->status == 'active')
                                         <td>
                                             <div class="badge badge-outline badge-success">{{ $employee->status }}</div>
@@ -88,7 +90,9 @@
                                         @endif
                                         <td class="flex gap-2">
                                             <a href="{{ route('hrm.employees.edit', $employee) }}" class="btn btn-soft btn-info">Edit</a>
-                                            <a href="{{ route('hrm.employees.delete', $employee->id) }}" class="btn btn-soft btn-secondary">Delete</a>
+                                            <button class="btn btn-soft btn-secondary" onclick="confirmDeletion('{{route('hrm.employees.delete', $employee->id)}}')">
+                                                Delete
+                                            </button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -103,4 +107,19 @@
             </div>
         </div>
     </div>
+    <script>
+        function confirmDeletion(url) {
+            Swal.fire({
+                title: 'Are you sure you want to delete?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url; // Redirect to deletion route
+                }
+            });
+        }
+    </script>
 </x-layouts.app>

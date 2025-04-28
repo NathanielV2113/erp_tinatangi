@@ -6,6 +6,7 @@ use App\Models\Department;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
 use App\Models\Employee;
+use SweetAlert2\Laravel\Swal;
 
 class DepartmentController extends Controller
 {
@@ -26,12 +27,14 @@ class DepartmentController extends Controller
     public function create()
     {
         //
+        $employees = Employee::get();
         $statuses = [
             'active' => 'Active',
             'inactive' => 'Inactive',
         ];
         return view('modules.hrm.department.create', [
             'statuses' => $statuses,
+            'employees' => $employees
         ]);
     }
 
@@ -47,7 +50,8 @@ class DepartmentController extends Controller
         $department->head = $request->head;
         $department->status = $request->status;
         $department->save();
-        return redirect()->route('hrm.departments')->with('success', 'Department created successfully.');
+        session()->flash('success', 'Created Successfully.');
+        return redirect()->route('hrm.departments');
     }
 
     /**
@@ -90,15 +94,17 @@ class DepartmentController extends Controller
         $department->head = $request->head;
         $department->status = $request->status;
         $department->save();
-        return redirect()->route('hrm.departments')->with('success', 'Department updated successfully.');
+        session()->flash('success', 'Updated Successfully.');
+        return redirect()->route('hrm.departments');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Department $department)
+    public function destroy($departmentId)
     {
         //
+        $department = Department::findOrFail($departmentId);
         $department->delete();
         return redirect()->route('hrm.departments')->with('success', 'Department deleted successfully.');
     }

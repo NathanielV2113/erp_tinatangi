@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit User</h4>
-                        <a href="{{ url('admin/users') }}" class="btn btn-primary float-end">Back</a>
+                        <a href="{{ url('admin/users') }}" class="btn btn-soft btn-primary float-end">Back</a>
                     </div>
                     <div class="card-body">
                         <form action="{{ url('admin/users/'. $user->id) }}" method="post">
@@ -46,7 +46,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <button class="btn btn-success">Update</button>
+                            <button class="btn btn-soft btn-success">Update</button>
                         </div>
 
                         </form>

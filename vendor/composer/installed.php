@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'laravel/livewire-starter-kit',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'debcd12e6e27a2d0528538689d433d09c26c07ee',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -422,9 +422,9 @@
             'dev_requirement' => false,
         ),
         'laravel/livewire-starter-kit' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'debcd12e6e27a2d0528538689d433d09c26c07ee',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -1144,6 +1144,15 @@
             'install_path' => __DIR__ . '/../staabm/side-effects-detector',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'sweetalert2/laravel' => array(
+            'pretty_version' => '0.1.0',
+            'version' => '0.1.0.0',
+            'reference' => 'dc4d153a767cbfeb698e1288ce30b6359d009716',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../sweetalert2/laravel',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'symfony/clock' => array(
             'pretty_version' => 'v7.2.0',

@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Role : {{ $role->name }}</h4>
-                        <a href="{{ url('admin/roles') }}" class="btn btn-secondary float-end">Back</a>
+                        <a href="{{ route('roles') }}" class="btn btn-secondary float-end">Back</a>
                     </div>
                     <div class="card-body">
                         <form action="{{ url('admin/roles/'. $role->id . '/give-permissions') }}" method="post">

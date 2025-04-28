@@ -24,6 +24,7 @@
         @enderror
     </div>
 
+    @if (!empty($department))
     <div class="form-group mt-3">
         <label for="head">Head</label>
         <select name="head" id="head" class="input">
@@ -37,6 +38,7 @@
         <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
+    @endif
 
     <div class="form-group mt-3">
         <label for="status">Status</label>
