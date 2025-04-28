@@ -102,6 +102,10 @@ class EmployeeController extends Controller
             $termination = now();
         }
 
+        if($request->status == "active" || $request->status == "inactive"){
+            $termination = null;
+        }
+
         $employee->first_name = $request->first_name;
         $employee->middle_name = $request->middle_name;
         $employee->last_name = $request->last_name;

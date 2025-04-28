@@ -20,7 +20,7 @@
                                 <!-- head -->
                                 <thead>
                                     <tr>
-                                        <th></th>
+                                        <th>#</th>
                                         <th>Department</th>
                                         <th>Description</th>
                                         <th>Head</th>
@@ -29,9 +29,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php $count = 0 ?>
                                     @foreach ($departments as $department)
                                     <tr class="hover:bg-base-300">
-                                        <td></td>
+                                        <td>{{ ++$count }}</td>
                                         <td>{{ $department->name }}</td>
                                         <td>{{ $department->description }}</td>
                                         <td>
