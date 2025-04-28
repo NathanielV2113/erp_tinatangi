@@ -26,7 +26,7 @@
                 @endrole
                 @role('admin')
                 <flux:navlist.group :heading="__('Admin')" class="grid">
-                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    <flux:navlist.item icon="rectangle-group" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                     <flux:navlist.item icon="key" :href="route('permissions')" :current="request()->routeIs('permissions')" wire:navigate>{{ __('Permission Management') }}</flux:navlist.item>
                     <flux:navlist.item icon="key" :href="route('roles')" :current="request()->routeIs('roles')" wire:navigate>{{ __('Role Management') }}</flux:navlist.item>
                     <flux:navlist.item icon="user-group" :href="route('users')" :current="request()->routeIs('users')" wire:navigate>{{ __('Users') }}</flux:navlist.item>
@@ -34,31 +34,31 @@
                 @endrole
                 @role('hrm')
                 <flux:navlist.group :heading="__('Human Resources Management')" class="grid">
-                    <flux:navlist.item icon="home" :href="route('hrm')" :current="request()->routeIs('hrm')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    <flux:navlist.item icon="rectangle-group" :href="route('hrm')" :current="request()->routeIs('hrm')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                     <flux:navlist.item icon="user-group" :href="route('hrm.employees')" :current="request()->routeIs('hrm.employees')" wire:navigate>{{ __('Employees') }}</flux:navlist.item>
-                    <flux:navlist.item icon="rectangle-stack" :href="route('hrm.departments')" :current="request()->routeIs('hrm.departments')" wire:navigate>{{ __('Departments') }}</flux:navlist.item>
                     <flux:navlist.item icon="user" :href="route('hrm.attendance')" :current="request()->routeIs('hrm.attendance')" wire:navigate>{{ __('Attendance') }}</flux:navlist.item>
                     <flux:navlist.item icon="banknotes" :href="route('hrm.payroll')" :current="request()->routeIs('hrm.payroll')" wire:navigate>{{ __('Payroll') }}</flux:navlist.item>
+                    <flux:navlist.item icon="rectangle-stack" :href="route('hrm.departments')" :current="request()->routeIs('hrm.departments')" wire:navigate>{{ __('Departments') }}</flux:navlist.item>
                 </flux:navlist.group>
                 @endrole
                 @role('frm')
                 <flux:navlist.group :heading="__('Finance Risk Management')" class="grid">
-                    <flux:navlist.item icon="home" :href="route('frm')" :current="request()->routeIs('frm')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    <flux:navlist.item icon="rectangle-group" :href="route('frm')" :current="request()->routeIs('frm')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                 </flux:navlist.group>
                 @endrole
                 @role('scm')
                 <flux:navlist.group :heading="__('Supply Chain Management')" class="grid">
-                    <flux:navlist.item icon="home" :href="route('scm')" :current="request()->routeIs('scm')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    <flux:navlist.item icon="rectangle-group" :href="route('scm')" :current="request()->routeIs('scm')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                 </flux:navlist.group>
                 @endrole
                 @role('mfr')
                 <flux:navlist.group :heading="__('Manufacturing')" class="grid">
-                    <flux:navlist.item icon="home" :href="route('mfr')" :current="request()->routeIs('mfr')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    <flux:navlist.item icon="rectangle-group" :href="route('mfr')" :current="request()->routeIs('mfr')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                 </flux:navlist.group>
                 @endrole
                 @role('crm')
                 <flux:navlist.group :heading="__('Customer Relationship Management')" class="grid">
-                    <flux:navlist.item icon="home" :href="route('crm')" :current="request()->routeIs('crm')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    <flux:navlist.item icon="rectangle-group" :href="route('crm')" :current="request()->routeIs('crm')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                 </flux:navlist.group>
                 @endrole
             </flux:navlist>
