@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('status')->default('active'); // active, inactive, terminated
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

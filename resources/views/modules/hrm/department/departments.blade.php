@@ -2,8 +2,14 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-12">
-                @if (session('status'))
-                <div class="alert alert-success">{{ session('status') }}</div>
+                @if(session('success'))
+                <script>
+                    Swal.fire({
+                        title: "{{ session('success') }}",
+                        icon: 'success',
+                        confirmButtonText: 'Okay'
+                    });
+                </script>
                 @endif
                 <div class="bg-white dark:bg-amber-950 shadow-md rounded-lg p-6 ml-10">
                     <div class="flex w-full">
@@ -29,7 +35,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php $count = 0 ?>
+                                    <?php $count = 0 ?>
                                     @foreach ($departments as $department)
                                     <tr class="hover:bg-base-300">
                                         <td>{{ ++$count }}</td>
@@ -57,7 +63,9 @@
                                         @endif
                                         <td class="flex gap-2">
                                             <a href="{{ route('hrm.departments.edit', $department) }}" class="btn btn-soft btn-info">Edit</a>
-                                            <a href="" class="btn btn-soft btn-secondary">Disable</a>
+                                            <button class="btn btn-soft btn-secondary" onclick="confirmDeletion('{{route('hrm.departments.delete', $department->id)}}')">
+                                                Delete
+                                            </button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -72,4 +80,19 @@
             </div>
         </div>
     </div>
+    <script>
+        function confirmDeletion(url) {
+            Swal.fire({
+                title: 'Are you sure you want to delete?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url; // Redirect to deletion route
+                }
+            });
+        }
+    </script>
 </x-layouts.app>

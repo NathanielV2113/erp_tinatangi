@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit Role</h4>
-                        <a href="{{ url('admin/roles') }}" class="btn btn-secondary float-end">Back</a>
+                        <a href="{{ url('admin/roles') }}" class="btn btn-soft btn-secondary float-end">Back</a>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('update.roles', $role) }}" method="post">
@@ -16,7 +16,7 @@
                             <input type="text" name="name" class="form-control" value="{{ $role->name }}">
                         </div>
                         <div class="mb-3">
-                            <button class="btn btn-success">Update</button>
+                            <button class="btn btn-soft btn-success">Update</button>
                         </div>
                         </form>
                     </div>

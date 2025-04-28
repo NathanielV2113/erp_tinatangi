@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>User List</h4>
-                        <a href="{{ url('admin/users/create') }}" class="btn btn-accent float-end">Add User</a>
+                        <a href="{{ url('admin/users/create') }}" class="btn btn-soft btn-accent float-end">Add User</a>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
@@ -28,15 +28,15 @@
                                         <td>
                                             @if (!empty($user->getRoleNames()))
                                                 @foreach ($user->getRoleNames() as $rolename)
-                                                    <span class="badge bg-info">{{ $rolename }}</span>
+                                                    <span class="badge badge-outline badge-success">{{ $rolename }}</span>
                                                 @endforeach
                                             @else
                                                 <span class="badge bg-danger">No Role</span>
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/users/'. $user->id . '/edit') }}" class="btn btn-success">Edit</a>
-                                            <a href="{{ url('admin/users/' . $user->id . '/delete') }}" class="btn btn-secondary">Delete</a>
+                                            <a href="{{ url('admin/users/'. $user->id . '/edit') }}" class="btn btn-soft btn-success">Edit</a>
+                                            <a href="{{ url('admin/users/' . $user->id . '/delete') }}" class="btn btn-soft btn-secondary">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

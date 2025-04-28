@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Create User</h4>
-                        <a href="{{ url('admin/users') }}" class="btn btn-primary float-end">Back</a>
+                        <a href="{{ url('admin/users') }}" class="btn btn-soft btn-primary float-end">Back</a>
                     </div>
                     <div class="card-body">
                         <form action="{{ url('admin/users') }}" method="post">
@@ -32,7 +32,7 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <button class="btn btn-success">Save</button>
+                            <button class="btn btn-soft btn-success">Save</button>
                         </div>
 
                         </form>

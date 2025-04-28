@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Create Permission</h4>
-                        <a href="{{ url('admin/permissions') }}" class="btn btn-primary float-end">Back</a>
+                        <a href="{{ url('admin/permissions') }}" class="btn btn-soft btn-primary float-end">Back</a>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('store.permissions') }}" method="post">
@@ -15,7 +15,7 @@
                             <input type="text" name="name" class="form-control" placeholder="Enter Permission Name">
                         </div>
                         <div class="mb-3">
-                            <button class="btn btn-success">Save</button>
+                            <button class="btn btn-soft btn-success">Save</button>
                         </div>
 
                         </form>

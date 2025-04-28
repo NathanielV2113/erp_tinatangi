@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('head')->nullable(); // Head of the department
             $table->string('status')->default('active'); // active, inactive
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

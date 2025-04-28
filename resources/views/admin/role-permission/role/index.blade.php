@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Role List</h4>
-                        <a href="{{ url('admin/roles/create') }}" class="btn btn-accent float-end">Add Role</a>
+                        <a href="{{ url('admin/roles/create') }}" class="btn btn-soft btn-accent float-end">Add Role</a>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
@@ -23,9 +23,9 @@
                                     <tr>
                                         <td>{{ $role->name }}</td>
                                         <td>
-                                            <a href="{{ url('admin/roles/'. $role->id . '/give-permissions') }}" class="btn btn-warning">Add | Edit Role Permission</a>
-                                            <a href="{{ route('edit.roles', $role ) }}" class="btn btn-success">Rename</a>
-                                            <a href="{{ url('admin/roles/' . $role->id . '/delete') }}" class="btn btn-secondary">Delete</a>
+                                            <a href="{{ url('admin/roles/'. $role->id . '/give-permissions') }}" class="btn btn-soft btn-warning">Edit</a>
+                                            <a href="{{ route('edit.roles', $role ) }}" class="btn btn-soft btn-success">Rename</a>
+                                            <a href="{{ url('admin/roles/' . $role->id . '/delete') }}" class="btn btn-soft btn-secondary">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
