@@ -37,13 +37,13 @@
     <div class="flex justify-between items-center">
       <div class="flex items-center space-x-8">
         <!-- Logo linking to top -->
-        <a href="#top">
+        <a href="{{ route('tinatangi.home') }}#top">
           <img src="/img/website-imgs/tinatangilogo2.png" alt="Logo" class="h-10 cursor-pointer" />
         </a>
         <!-- Navigation Links -->
-        <a href="#about" class="text-white text-lg font-medium transition hover:text-white">About</a>
-        <a href="#food-menu" class="text-white text-lg font-medium transition hover:text-white">Menu</a>
-        <a href="#tinatangi-gallery" class="text-white text-lg font-medium transition hover:text-white">Gallery</a>
+        <a href="{{ route('tinatangi.home') }}#about" class="text-white text-lg font-medium transition hover:text-white">About</a>
+        <a href="{{ route('tinatangi.home') }}#food-menu" class="text-white text-lg font-medium transition hover:text-white">Menu</a>
+        <a href="{{ route('tinatangi.home') }}#tinatangi-gallery" class="text-white text-lg font-medium transition hover:text-white">Gallery</a>
       </div>
       <div class="flex items-center space-x-4 border px-5 py-2 rounded-full shadow-md">
         <!-- Location icon with extra styling to ensure visibility -->

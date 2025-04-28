@@ -28,7 +28,7 @@
     <div class="flex justify-between items-center">
       <div class="flex items-center space-x-8">
         <!-- Logo linking to top -->
-        <a href="#top">
+        <a href="{{ route('tinatangi.home') }}#top">
           <img src="/img/website-imgs/tinatangilogo2.png" alt="Logo" class="h-10 cursor-pointer" />
         </a>
         <!-- Navigation Links -->
