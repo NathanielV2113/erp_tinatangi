@@ -41,11 +41,15 @@
             @role('hrm')
             <flux:navlist.group :heading="__('Human Resources Management')" class="grid">
                 <flux:navlist.item icon="rectangle-group" :href="route('hrm')" :current="request()->routeIs('hrm')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                <flux:navlist.group expandable :expanded="false" heading="Employee Management" class="hidden lg:grid">
+                <flux:navlist.group :heading="__('Employee Management')" class="grid">
                     <flux:navlist.item icon="user-group" :href="route('hrm.employees')" :current="request()->routeIs('hrm.employees')" wire:navigate>{{ __('Employees') }}</flux:navlist.item>
+                    <flux:navlist.item icon="calendar" :href="route('hrm.scheduling')" :current="request()->routeIs('hrm.scheduling')" wire:navigate>{{ __('Scheduling') }}</flux:navlist.item>
                     <flux:navlist.item icon="user" :href="route('hrm.attendance')" :current="request()->routeIs('hrm.attendance')" wire:navigate>{{ __('Attendance') }}</flux:navlist.item>
                 </flux:navlist.group>
-                <flux:navlist.item icon="banknotes" :href="route('hrm.payroll')" :current="request()->routeIs('hrm.payroll')" wire:navigate>{{ __('Payroll') }}</flux:navlist.item>
+                <flux:navlist.group :heading="__('System Management')" class="grid">
+                    <flux:navlist.item icon="banknotes" :href="route('hrm.payroll')" :current="request()->routeIs('hrm.payroll')" wire:navigate>{{ __('Payroll') }}</flux:navlist.item>
+                </flux:navlist.group>
+
                 <flux:navlist.item icon="rectangle-stack" :href="route('hrm.departments')" :current="request()->routeIs('hrm.departments')" wire:navigate>{{ __('Departments') }}</flux:navlist.item>
             </flux:navlist.group>
             @endrole

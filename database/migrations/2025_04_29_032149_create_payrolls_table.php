@@ -17,13 +17,14 @@ return new class extends Migration
             $table->string('pay_period');
             $table->integer('days_of_present');
             $table->integer('days_of_absent');
-            $table->string('hours_late');
+            $table->decimal('hours_late', 4, 2);
             $table->double('mandatory_deductions');
             $table->double('tax');
-            $table->double('salary');
             $table->double('over_time');
             $table->double('bonus');
             $table->double('advance_payments');
+            $table->double('gross_deduction');
+            $table->double('gross_salary');
             $table->double('net_pay');
             $table->string('status')->default('pending');
             $table->timestamps();

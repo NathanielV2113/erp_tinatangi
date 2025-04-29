@@ -2,9 +2,6 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-12">
-                @if (session('status'))
-                <div class="alert alert-success">{{ session('status') }}</div>
-                @endif
                 <div>
                     <div class="breadcrumbs text-sm ml-12">
                         <ul>

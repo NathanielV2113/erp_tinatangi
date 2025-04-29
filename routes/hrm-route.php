@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PayrollController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HrmController;
 
@@ -24,7 +25,10 @@ Route::middleware(['isHrm'])->group(function () {
 
 
     Route::get('hrm/payroll', [HrmController::class, 'payroll'])->name('hrm.payroll');
+    Route::get('hrm/payroll/generate', [PayrollController::class, 'generate'])->name('hrm.payroll.generate');
 
     Route::get('hrm/attendance', [HrmController::class, 'attendance'])->name('hrm.attendance');
+
+    Route::get('hrm/scheduling', [HrmController::class, 'scheduling'])->name('hrm.scheduling');
 
 });

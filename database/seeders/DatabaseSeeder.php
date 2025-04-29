@@ -28,9 +28,9 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12345678'),
         ]);
 
-        $roles = ['super-admin', 'admin', 'user', 'employee', 'hrm', 'frm', 'scm', 'mfr', 'crm'];
+        $roles = ['super-admin', 'admin', 'hrm', 'frm', 'scm', 'mfr', 'crm', 'user', 'employee'];
         foreach ($roles as $role) {
-            DB::table('roles')->insert(['name' => $role, 'guard_name' => 'web']);
+            DB::table('roles')->insert(['name' => $role, 'guard_name' => 'web', 'created_at' => now(), 'updated_at' => now()]);
         }
         DB::table('model_has_roles')->insert([
             'role_id' => '1', 
@@ -51,8 +51,11 @@ class DatabaseSeeder extends Seeder
             'first_name' => 'Taylor',
             'middle_name' => 'Alison',
             'last_name' => 'Swift',
+            'gender' => 'female',
             'email' => 'tswift@yahoo.com',
             'status' => 'active'
         ]);
+
+        $this->call(MandatoryDeductionSeeder::class);
     }
 }

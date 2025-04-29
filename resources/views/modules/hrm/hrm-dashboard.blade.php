@@ -6,9 +6,9 @@
 
         <div class="grid grid-cols-3 gap-0">
             <div class="col-span-2">
-                <div class="grid grid-flow-col grid-rows-2 gap-1">
-                    <div>
-                        <div class="grid grid-cols-3 gap-1 mt-6 w-5xl">
+                <div class="grid grid-flow-col grid-rows-2 gap-0">
+                    <div class="h-[210px]">
+                        <div class="grid grid-cols-3 gap-1 mt-12 w-5xl">
                             <div>
                                 <div class="stats shadow p-4 bg-white">
                                     <div class="stat text-coffee">
@@ -58,41 +58,53 @@
                         </div>
                     </div>
                     <!-- ... -->
-                    <div>
-                        <div class="charts bg-white">
-                            <div class="chart">
-                                <h2 id="title"></h2>
-                                <canvas id="bar"></canvas>
-                            </div>
-                            <div class="chart" id="bar-chart">
-                                <h2></h2>
-                                <canvas id="bar"></canvas>
-                            </div>
+                    <div class="mt-[-135px] bg-white shadow rounded-2xl w-[985px]">
+                        <div class="mt-5 ml-10">
+                            <h1 class="text-2xl font-bold">
+                                Chart Display
+                            </h1>
                         </div>
+                        <canvas class=" bg-white p-8" id="myChart" width="90" height="42"></canvas>
                     </div>
                 </div>
             </div>
             <div class="col-span-1">
-                <div class="overflow-x-auto bg-white mt-6 p-4 rounded-md h-[800px] shadow">
-                    <table class="table">
-                        <thead>
-                            <th>#</th>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Date hired</th>
-                        </thead>
-                        <tbody>
-                            <?php $count = 0 ?>
-                            @foreach ($hires->sortByDesc('hire_date') as $hire)
-                            <tr>
-                                <td>{{ ++$count }}</td>
-                                <td>{{ $hire->first_name }}</td>
-                                <td>{{ $hire->last_name }}</td>
-                                <td>{{ $hire->hire_date->format('M d Y') }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <div class="grid grid-flow-col grid-rows-2 gap-0">
+                    <div class="overflow-x-auto bg-white mt-12 p-4 rounded-md h-[400px] shadow">
+                        <div class="mt-5 ml-5 mb-5">
+                            <h1 class="font-semibold text-lg">
+                                New Employees
+                            </h1>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <th>#</th>
+                                <th>Firstname</th>
+                                <th>Lastname</th>
+                                <th>Date hired</th>
+                            </thead>
+                            <tbody>
+                                <?php $count = 0 ?>
+                                @foreach ($hires->sortByDesc('hire_date') as $hire)
+                                <tr>
+                                    <td>{{ ++$count }}</td>
+                                    <td>{{ $hire->first_name }}</td>
+                                    <td>{{ $hire->last_name }}</td>
+                                    <td>{{ $hire->hire_date->format('M d Y') }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- ... -->
+                    <div class="mt-[-35px] bg-white shadow rounded-2xl w-[515px]">
+                        <div class="mt-5 ml-10">
+                            <h1 class="text-2xl font-bold">
+                                Chart Display
+                            </h1>
+                        </div>
+                        <canvas class=" bg-white p-8" id="myChart2" width="50" height="50"></canvas>
+                    </div>
                 </div>
             </div>
 
@@ -104,41 +116,96 @@
 
     <style>
         .charts {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        grid-gap: 20px;
-        width: 100%;
-        padding: 20px;
-        padding-top: 0;
-    }
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-gap: 20px;
+            width: 100%;
+            padding: 20px;
+            padding-top: 0;
+        }
 
-    .chart {
-        margin-top: 20px;
-        text-align: center;
-        background: var(--true_white);
-        padding: 20px;
-        border-radius: 20px;
-        box-shadow: 0 7px 25px var(--null_grey);
-    }
+        .chart {
+            margin-top: 20px;
+            text-align: center;
+            background: var(--true_white);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 7px 25px var(--null_grey);
+        }
     </style>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
     <script>
-    var ctx3 = document.getElementById('bar').getContext('2d');
-    var myChart3 = new Chart(ctx3, {
-        type: 'bar',
-        data: {
-            labels: '',
-            datasets: ''
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
-</script>
-
+        });
+    </script>
+    <script>
+        const ctx2 = document.getElementById('myChart2').getContext('2d');
+        const myChart2 = new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 </x-layouts.app>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\Payroll;
+use App\Models\Department;
 use Carbon\Carbon;
 
 class HrmController extends Controller
@@ -28,10 +30,16 @@ class HrmController extends Controller
     }
 
     public function payroll(){
-        return view('modules.hrm.payroll.payroll');
+        $employees = Employee::all();
+        $payrolls = Payroll::all();
+        $departments = Department::all();
+        return view('modules.hrm.payroll.payroll', compact('employees', 'payrolls', 'departments'));
+    }
+    public function scheduling(){
+        return view('modules.hrm.scheduling.scheduling');
     }
     public function attendance(){
-        return view('modules.hrm.attendance.attendance');
+        return view('modules.hrm.scheduling.attendance');
     }
 
 

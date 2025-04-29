@@ -2,18 +2,15 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-12">
-                @if (session('status'))
-                <div class="alert alert-success">{{ session('status') }}</div>
-                @endif
                 <div class="card">
-                    <div class="header">
-                        <h1 class="text-2xl font-semibold">Edit Department</h1>
+                    <div class="ml-12">
+                        <h1 class="text-2xl font-bold">Edit Department</h1>
                     </div>
                     <form action="{{ route('hrm.departments.update', $department) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         @include('modules.hrm.department.form')
-                        <div class="form-group">
+                        <div class="form-group mb-10 mt-5 ml-12">
                             <button type="submit" class="btn btn-soft btn-success">Save</button>
                             <a href="{{ route('hrm.departments') }}" class="btn btn-soft btn-error">Cancel</a>
                         </div>

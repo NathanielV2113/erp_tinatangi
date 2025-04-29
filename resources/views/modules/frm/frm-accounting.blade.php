@@ -15,19 +15,4 @@
             </div>
         </div>
     </div>
-    <script>
-        function confirmDeletion(url) {
-            Swal.fire({
-                title: 'Are you sure you want to delete?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete!',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = url; // Redirect to deletion route
-                }
-            });
-        }
-    </script>
 </x-layouts.app>
