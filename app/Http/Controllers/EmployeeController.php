@@ -50,6 +50,8 @@ class EmployeeController extends Controller
         $employee->first_name = $request->first_name;
         $employee->middle_name = $request->middle_name;
         $employee->last_name = $request->last_name;
+        $employee->gender = $request->gender;
+        $employee->birthdate = $request->birthdate;
         $employee->email = $request->email;
         $employee->phone = $request->phone;
         $employee->department = $request->department;
@@ -111,6 +113,7 @@ class EmployeeController extends Controller
         $employee->first_name = $request->first_name;
         $employee->middle_name = $request->middle_name;
         $employee->last_name = $request->last_name;
+        $employee->birthdate = $request->birthdate;
         $employee->email = $request->email;
         $employee->phone = $request->phone;
         $employee->department = $request->department;

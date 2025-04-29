@@ -1,14 +1,5 @@
 <x-layouts.app :title="__('Employee List')">
-    @if(session('success'))
-    <script>
-        Swal.fire({
-            title: "{{ session('success') }}",
-            icon: 'success',
-            confirmButtonText: 'Okay'
-        });
-    </script>
-    @endif
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=delete" />
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-12">
@@ -89,7 +80,9 @@
                                         <td>{{ $employee->termination_date->format('F j, Y') }}</td>
                                         @endif
                                         <td class="flex gap-2">
-                                            <a href="{{ route('hrm.employees.edit', $employee) }}" class="btn btn-soft btn-info">Edit</a>
+                                            <a href="{{ route('hrm.employees.edit', $employee) }}" class="btn btn-soft btn-info">
+                                                Edit
+                                            </a>
                                             <button class="btn btn-soft btn-secondary" onclick="confirmDeletion('{{route('hrm.employees.delete', $employee->id)}}')">
                                                 Delete
                                             </button>
@@ -107,19 +100,4 @@
             </div>
         </div>
     </div>
-    <script>
-        function confirmDeletion(url) {
-            Swal.fire({
-                title: 'Are you sure you want to delete?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete!',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = url; // Redirect to deletion route
-                }
-            });
-        }
-    </script>
 </x-layouts.app>
