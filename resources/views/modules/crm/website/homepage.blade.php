@@ -1,10 +1,9 @@
 @extends('modules.crm.website.layout')
-
 @section('content')
 <!-- HERO SECTION -->
 <section class="relative h-screen animate-fadeInUp">
       <!-- Changed hero background image -->
-      <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/img/website-imgs/hero-bg2.jpg');"></div>
+      <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/img/website-imgs/hero-bg2.png');"></div>
       <!-- Removed mt-20 so the hero content sits flush with the header -->
       <div class="relative z-10 h-full flex items-center px-12">
         <div class="flex-grow flex flex-col md:flex-row items-center w-full">
@@ -24,7 +23,7 @@
           <div class="md:w-1/2 mt-8 md:mt-0 flex items-center justify-center">
             <img src="/img/website-imgs/extra-bg3.png" 
                  alt="Hero Extra Image" 
-                 class="w-3/4 object-cover object-center"
+                 class="w-3/4  object-center transition-transform duration-700 hover:scale-110 hover:rotate-6"
                  style="margin-top: -100px;"/>
           </div>
         </div>

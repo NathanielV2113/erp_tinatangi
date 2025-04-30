@@ -30,5 +30,4 @@ Route::middleware(['isHrm'])->group(function () {
     Route::get('hrm/attendance', [HrmController::class, 'attendance'])->name('hrm.attendance');
 
     Route::get('hrm/scheduling', [HrmController::class, 'scheduling'])->name('hrm.scheduling');
-
 });
