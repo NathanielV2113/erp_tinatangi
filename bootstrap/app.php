@@ -22,6 +22,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'isScm' => \App\Http\Middleware\ScmMiddleware::class,
             'isMfr' => \App\Http\Middleware\MfrMiddleware::class,
             'isCrm' => \App\Http\Middleware\CrmMiddleware::class,
+            'isEmployee' => \App\Http\Middleware\EmployeeMiddleware::class,
+            'isUser' => \App\Http\Middleware\UserMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

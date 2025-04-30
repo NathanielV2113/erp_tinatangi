@@ -28,6 +28,9 @@ Route::get('/frm', [\App\Http\Controllers\FrmController::class, 'index'])->middl
 Route::get('/scm', [\App\Http\Controllers\ScmController::class, 'index'])->middleware(['isScm'])->name('scm');
 Route::get('/mfr', [\App\Http\Controllers\MfrController::class, 'index'])->middleware(['isMfr'])->name('mfr');
 Route::get('/crm', [\App\Http\Controllers\CrmController::class, 'index'])->middleware(['isCrm'])->name('crm');
+Route::get('/employee', [\App\Http\Controllers\EmployeeController::class, 'employee'])->middleware(['isEmployee'])->name('employee');
+Route::get('/user', [\App\Http\Controllers\CrmController::class, 'homepage'])->middleware(['isUser'])->name('user');
+
 
 
 require __DIR__.'/auth.php';
@@ -37,3 +40,4 @@ require __DIR__.'/frm-route.php';
 require __DIR__.'/scm-route.php';
 require __DIR__.'/mfr-route.php';
 require __DIR__.'/crm-route.php';
+require __DIR__.'/user-route.php';

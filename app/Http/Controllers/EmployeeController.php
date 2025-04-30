@@ -137,4 +137,9 @@ class EmployeeController extends Controller
         $employee->delete();
         return redirect()->route('hrm.employees')->with('success', 'Employee deleted successfully.');
     }
+
+
+    public function employee(){
+        
+    }
 }

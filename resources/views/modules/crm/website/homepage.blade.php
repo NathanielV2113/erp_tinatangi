@@ -16,7 +16,7 @@
             <p class="text-lg max-w-md" style="color: var(--color-coffee);">
               each creation is a testament to the dedication and love that goes into making every detail truly unforgettable.
             </p>
-            <button id="seeAllBtn" class="mt-4 px-6 py-3 text-white font-medium rounded-full transition transform duration-300 hover:text-white hover:scale-105 cursor-pointer">
+            <button id="seeAllBtn" class="button mt-4 px-6 py-3 text-white font-medium rounded-full transition transform duration-300 hover:text-white hover:scale-105 cursor-pointer">
               See All <i class="fa-solid fa-arrow-right ml-2"></i>
             </button>
           </div>

@@ -46,6 +46,10 @@ class Login extends Component
         $user = Auth::user();
 
         switch($user->getRoleNames()->first()) {
+            case 'user':
+                $this->redirectIntended(route('user', absolute: false), navigate: true);
+            case 'employee':
+                $this->redirectIntended(route('employee', absolute: false), navigate: true);
             case 'crm':
                 $this->redirectIntended(route('crm', absolute: false), navigate: true);
             case 'mfr':
