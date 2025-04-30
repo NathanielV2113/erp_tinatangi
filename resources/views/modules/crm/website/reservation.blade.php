@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reservation Page</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Google Fonts: Raleway -->
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -13,6 +16,7 @@
       font-family: 'Raleway', sans-serif;
       background-color: var(--color-warm-white);
     }
+
     :root {
       --color-warm-white: #F6F5F3;
       --color-cream: #f3e9dc;
@@ -22,6 +26,7 @@
     }
   </style>
 </head>
+
 <body class="flex flex-col min-h-screen">
   <!-- HEADER (untouched) -->
   <nav class="sticky top-0 left-0 w-full z-50 p-6 border-b border-gray-300" style="background-color: rgba(94,48,35,0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
@@ -32,6 +37,7 @@
           <img src="/img/website-imgs/tinatangilogo2.png" alt="Logo" class="h-10 cursor-pointer" />
         </a>
         <!-- Navigation Links -->
+        <a href="{{ route('tinatangi.home') }}#top" class="text-white font-medium transition hover:text-white">Home</a>
         <a href="{{ route('tinatangi.home') }}#about" class="text-white text-lg font-medium transition hover:text-white">About</a>
         <a href="{{ route('tinatangi.home') }}#food-menu" class="text-white text-lg font-medium transition hover:text-white">Menu</a>
         <a href="{{ route('tinatangi.home') }}#tinatangi-gallery" class="text-white text-lg font-medium transition hover:text-white">Gallery</a>
@@ -63,7 +69,7 @@
             <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required
               class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-caramel)] focus:border-[var(--color-caramel)] transition duration-300 ease-in-out shadow-sm hover:shadow-lg">
           </div>
-          
+
           <div class="mb-6">
             <label for="phone" class="block text-[var(--color-coffee)] font-medium mb-2">Phone</label>
             <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required
@@ -105,11 +111,11 @@
         <!-- Navigation Links with Feedback added; Contact removed -->
         <div class="mt-4 lg:mt-0">
           <ul class="flex space-x-6">
-          <li><a href="{{ route('tinatangi.home') }}#top" class="hover:text-gray-400">Home</a></li>
+            <li><a href="{{ route('tinatangi.home') }}#top" class="hover:text-gray-400">Home</a></li>
             <li><a href="{{ route('tinatangi.home') }}#about" class="hover:text-gray-400">About Us</a></li>
             <li><a href="{{ route('tinatangi.menu') }}#food-menu" class="hover:text-gray-400">Menu</a></li>
             <li><a href="{{ route('tinatangi.home') }}#tinatangi-gallery" class="hover:text-gray-400">Gallery</a></li>
-            <li><a href="#faq" class="hover:text-gray-400">FAQ</a></li>
+            <li><a href="{{ route('tinatangi.faq') }}#faq" class="hover:text-gray-400">FAQ</a></li>
             <li><a href="{{ route('tinatangi.feedback') }}#feedback" class="hover:text-gray-400">Feedback</a></li>
           </ul>
         </div>
@@ -126,10 +132,9 @@
       </div>
       <div class="flex flex-col lg:flex-row justify-between items-center mt-6 border-t border-gray-700 pt-4">
         <div class="flex space-x-4">
-          <a href="#" class="hover:text-gray-400"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="hover:text-gray-400"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="hover:text-gray-400"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="hover:text-gray-400"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.facebook.com/TinatangiCafe" class="hover:text-gray-400"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/tinatangi_cafe?" class="hover:text-gray-400"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/@tinatangi.cafe" class="hover:text-gray-400"><i class="fab fa-tiktok"></i></a>
         </div>
         <p class="text-sm mt-4 lg:mt-0">&copy; 2025 Tinatangi Coffee Shop. All rights reserved.</p>
       </div>
@@ -137,4 +142,5 @@
   </footer>
 
 </body>
+
 </html>

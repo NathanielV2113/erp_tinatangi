@@ -69,42 +69,31 @@
                 </div>
             </div>
             <div class="col-span-1">
-                <div class="grid grid-flow-col grid-rows-2 gap-0">
-                    <div class="overflow-x-auto bg-white mt-12 p-4 rounded-md h-[400px] shadow">
-                        <div class="mt-5 ml-5 mb-5">
-                            <h1 class="font-semibold text-lg">
-                                New Employees
-                            </h1>
-                        </div>
-                        <table class="table">
-                            <thead>
-                                <th>#</th>
-                                <th>Firstname</th>
-                                <th>Lastname</th>
-                                <th>Date hired</th>
-                            </thead>
-                            <tbody>
-                                <?php $count = 0 ?>
-                                @foreach ($hires->sortByDesc('hire_date') as $hire)
-                                <tr>
-                                    <td>{{ ++$count }}</td>
-                                    <td>{{ $hire->first_name }}</td>
-                                    <td>{{ $hire->last_name }}</td>
-                                    <td>{{ $hire->hire_date->format('M d Y') }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                <div class="overflow-x-auto bg-white mt-12 p-4 rounded-md h-[700px] shadow">
+                    <div class="mt-5 ml-5 mb-5">
+                        <h1 class="font-semibold text-lg">
+                            New Employees
+                        </h1>
                     </div>
-                    <!-- ... -->
-                    <div class="mt-[-35px] bg-white shadow rounded-2xl w-[515px]">
-                        <div class="mt-5 ml-10">
-                            <h1 class="text-2xl font-bold">
-                                Chart Display
-                            </h1>
-                        </div>
-                        <canvas class=" bg-white p-8" id="myChart2" width="50" height="50"></canvas>
-                    </div>
+                    <table class="table">
+                        <thead>
+                            <th>#</th>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Date hired</th>
+                        </thead>
+                        <tbody>
+                            <?php $count = 0 ?>
+                            @foreach ($hires->sortByDesc('hire_date') as $hire)
+                            <tr>
+                                <td>{{ ++$count }}</td>
+                                <td>{{ $hire->first_name }}</td>
+                                <td>{{ $hire->last_name }}</td>
+                                <td>{{ $hire->hire_date->format('M d Y') }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
 

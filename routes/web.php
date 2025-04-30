@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Livewire\Auth\Login;
 
-Route::get('/', Login::class)->name('home');
+Route::get('/', function () {
+    return view('modules.crm.website.homepage');
+})->name('home');
 
 Route::view('admin/dashboard', 'admin.dashboard')
     ->middleware(['isAdmin'])
