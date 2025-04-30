@@ -15,6 +15,8 @@ class Employee extends Model
         'first_name',
         'middle_name',
         'last_name',
+        'gender',
+        'birthdate',
         'email',
         'phone',
         'department',
@@ -25,6 +27,7 @@ class Employee extends Model
         'status'
     ];
     protected $casts = [
+        'birthdate' => 'date',
         'hire_date' => 'date',
         'termination_date' => 'date',
     ];

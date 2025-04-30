@@ -8,9 +8,9 @@
             <div class="flex w-full max-w-md flex-col items-center justify-center gap-6">
                 <div class="flex flex-col w-2xl gap-6">
                     <div class="flex flex-col items-center rounded-xl border bg-cream dark:bg-stone-950 dark:border-stone-800 text-stone-800 shadow-xs">
-                    <span class="flex mt-8 h-30 w-30 items-center justify-center rounded-md">
+                    <a href="{{ route('tinatangi.home') }}" class="flex mt-8 h-30 w-30 items-center justify-center rounded-md">
                         <x-app-logo-icon class="size-9 fill-current text-black dark:text-white" />
-                    </span>    
+                    </a>    
                     <div class="w-full px-30 py-12">{{ $slot }}</div>
                     </div>
                 </div>

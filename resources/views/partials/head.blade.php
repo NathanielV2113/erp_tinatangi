@@ -8,3 +8,8 @@
 
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 @fluxAppearance
+
+@include('sweetalert2::index')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">

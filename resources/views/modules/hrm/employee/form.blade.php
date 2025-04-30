@@ -26,6 +26,56 @@
             <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
+        @if (empty($employee->id))
+        <div class="form-group mt-4">
+            <label class="font-medium" for="gender">Gender</label>
+            <select name="gender" id="gender" class="input w-full bg-white mt-2">
+                <option value="male" {{ (isset($employee) && $employee->gender == 'male') ? 'selected' : '' }}>Male</option>
+                <option value="female" {{ (isset($employee) && $employee->gender == 'female') ? 'selected' : '' }}>Female</option>
+                <option value="other" {{ (isset($employee) && $employee->gender == 'other') ? 'selected' : '' }}>Other</option>
+            </select>
+            @error('gender')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        @endif
+
+        @if(!empty($employee->id) and !$employee->birthdate == null)
+        <div class="form-group mt-4">
+            <label class="font-medium" for="birthdate">Date of Birth</label>
+            <input type="date" name="birthdate" id="birthdate" class="input w-full bg-white mt-2" value="{{ old('birthdate', $employee->birthdate->format('Y-m-d') ?? '') }}">
+            @error('birthdate')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        @else
+        <div class="form-group mt-4">
+            <label class="font-medium" for="birthdate">Date of Birth</label>
+            <input type="date" name="birthdate" id="birthdate" class="input w-full bg-white mt-2">
+            @error('birthdate')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        @endif
+
+        
+
+        <div class="form-group mt-4">
+            <label class="font-medium" for="contact_no">Contact No.</label>
+            <input type="text" name="phone" id="phone" class="input w-full bg-white mt-2" value="{{ old('phone', $employee->phone ?? '') }}">
+            @error('phone')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
+    </div>
+    <!-- ... -->
+    <div class="bg-white p-5 rounded-lg w-[1200px]">
+        <div>
+            <h1 class="font-bold">Employee Information</h1>
+            <h2>Fill in the employee details below.</h2>
+        </div>
+        <div class="divider"></div>
         @if (!empty($employee->id))
         <div class="form-group mt-4">
             <label class="font-medium" for="email">Email Address</label>
@@ -44,22 +94,6 @@
         </div>
         @endif
 
-        <div class="form-group mt-4">
-            <label class="font-medium" for="contact_no">Contact No.</label>
-            <input type="text" name="phone" id="phone" class="input w-full bg-white mt-2" value="{{ old('phone', $employee->phone ?? '') }}">
-            @error('phone')
-            <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-
-    </div>
-    <!-- ... -->
-    <div class="bg-white p-5 rounded-lg w-[1200px]">
-        <div>
-            <h1 class="font-bold">Employee Information</h1>
-            <h2>Fill in the employee details below.</h2>
-        </div>
-        <div class="divider"></div>
         <div class="form-group mt-4">
             <label class="font-medium" for="department">Department</label>
             <select name="department" id="department" class="input w-full bg-white mt-2">
@@ -88,17 +122,10 @@
             <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
-        @if (!empty($employee->id))
+        @if(!empty($employee->id) and !$employee->hire_date == null)
         <div class="form-group mt-4">
             <label class="font-medium" for="hire_date">Date of Hire</label>
-            <input type="date" name="hire_date" id="hire_date" class="input w-full bg-white mt-2"
-                value="
-        @if($employee->hire_date == null)
-            old('hire_date', $employee->hire_date ?? '') 
-        @else
-            old('hire_date', $employee->hire_date->format('d-M-Y') ?? '') 
-        @endif
-        ">
+            <input type="date" name="hire_date" id="hire_date" class="input w-full bg-white mt-2" value="{{ old('hire_date', $employee->hire_date->format('Y-m-d') ?? '') }}">
             @error('hire_date')
             <div class="text-danger">{{ $message }}</div>
             @enderror
@@ -106,7 +133,7 @@
         @else
         <div class="form-group mt-4">
             <label class="font-medium" for="hire_date">Date of Hire</label>
-            <input type="date" name="hire_date" id="hire_date" class="input w-full bg-white mt-2" value="{{ old('hire_date', $employee->hire_date ?? '') }}">
+            <input type="date" name="hire_date" id="hire_date" class="input w-full bg-white mt-2">
             @error('hire_date')
             <div class="text-danger">{{ $message }}</div>
             @enderror
