@@ -7,6 +7,8 @@
   <title>Tinatangi Cafe</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
+  @include('sweetalert2::index')
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Font Awesome -->
   <link rel="stylesheet"
@@ -74,6 +76,15 @@
 </head>
 
 <body class="bg-white">
+  @if(session('success'))
+  <script>
+    Swal.fire({
+      title: "{{ session('success') }}",
+      icon: 'success',
+      confirmButtonText: 'Okay'
+    });
+  </script>
+  @endif
   <!-- Top Anchor for Logo Click -->
   <div id="top"></div>
 
@@ -100,17 +111,17 @@
             <i class="fa-solid fa-location-dot"></i> Store Location
           </a>
           @if(Auth::check())
-          <form method="POST" action="{{ route('logout') }}">
+          <form id="logout-form" method="POST" action="{{ route('logout') }}">
             @csrf
-            @method('post')
-            <button type="submit" class="text-white flex items-center transition hover:scale-110 transform duration-300 rounded-full p-2 cursor-pointer">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M5.121 17.804A10 10 0 0118.878 17.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <span class="ml-2">Logout</span>
-            </button>
           </form>
+
+          <button onclick="confirmLogout()" class="text-white flex items-center transition hover:scale-110 transform duration-300 rounded-full p-2 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5.121 17.804A10 10 0 0118.878 17.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span class="ml-2">Logout</span>
+          </button>
           @else
           <a href="{{ route('login') }}" class="text-white flex items-center transition hover:scale-110 transform duration-300 rounded-full p-2 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -173,7 +184,23 @@
     </footer>
 
     <!-- SCRIPTS -->
+    <script>
+      function confirmLogout() {
+        Swal.fire({
+          title: 'Are you sure you want to logout?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes',
+          cancelButtonText: 'Cancel'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            document.getElementById("logout-form").submit();
+          }
+        });
+      }
+    </script>
     @yield('scripts')
+
 </body>
 
 </html>

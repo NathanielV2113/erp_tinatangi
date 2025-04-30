@@ -26,7 +26,7 @@ class Login extends Component
     /**
      * Handle an incoming authentication request.
      */
-    public function login(): void
+    public function login()
     {
         $this->validate();
 
@@ -47,23 +47,23 @@ class Login extends Component
 
         switch($user->getRoleNames()->first()) {
             case 'user':
-                $this->redirectIntended(route('user', absolute: false), navigate: true);
+                return redirect()->intended(route('user', absolute: false))->with('success', 'Welcome'.' '.$user->name.'! ');
             case 'employee':
-                $this->redirectIntended(route('employee', absolute: false), navigate: true);
+                return redirect()->intended(route('employee', absolute: false))->with('success', 'Welcome'.' '.$user->name.'! ');
             case 'crm':
-                $this->redirectIntended(route('crm', absolute: false), navigate: true);
+                return redirect()->intended(route('crm', absolute: false))->with('success', 'Welcome'.' '.$user->name.'! ');
             case 'mfr':
-                $this->redirectIntended(route('mfr', absolute: false), navigate: true);
+                return redirect()->intended(route('mfr', absolute: false))->with('success', 'Welcome'.' '.$user->name.'! ');
             case 'scm':
-                $this->redirectIntended(route('scm', absolute: false), navigate: true);
+                return redirect()->intended(route('scm', absolute: false))->with('success', 'Welcome'.' '.$user->name.'! ');
             case 'frm':
-                $this->redirectIntended(route('frm', absolute: false), navigate: true);
+                return redirect()->intended(route('frm', absolute: false))->with('success', 'Welcome'.' '.$user->name.'! ');
             case 'hrm':
-                $this->redirectIntended(route('hrm', absolute: false), navigate: true);
+                return redirect()->intended(route('hrm', absolute: false))->with('success', 'Welcome'.' '.$user->name.'! ');
             case 'admin':
-                $this->redirectIntended(route('dashboard', absolute: false), navigate: true);
+                return redirect()->intended(route('dashboard', absolute: false))->with('success', 'Welcome'.' '.$user->name.'! ');
             case 'super-admin':
-                $this->redirectIntended(route('dashboard', absolute: false), navigate: true);
+                return redirect()->intended(route('dashboard', absolute: false))->with('success', 'Welcome'.' '.$user->name.'! ');
             default:
         }
     }
