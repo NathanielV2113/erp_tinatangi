@@ -37,6 +37,12 @@ class AdminMiddleware
             if($user->hasRole(['crm'])){
                 return redirect('/crm');
             }
+            if($user->hasRole(['employee'])){
+                return redirect('/employee');
+            }
+            if($user->hasRole(['user'])){
+                return redirect('/user');
+            }
             abort(403, 'Unauthorized action.');
         }
         abort(401);

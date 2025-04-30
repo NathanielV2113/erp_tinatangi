@@ -14,6 +14,12 @@ Route::middleware('guest')->group(function () {
     Route::get('register', Register::class)->name('register');
     Route::get('forgot-password', ForgotPassword::class)->name('password.request');
     Route::get('reset-password/{token}', ResetPassword::class)->name('password.reset');
+    Route::view('tinatangi/home', 'modules.crm.website.homepage')->name('tinatangi.home');
+    Route::view('tinatangi/menu', 'modules.crm.website.menu')->name('tinatangi.menu');
+    Route::view('tinatangi/reservation', 'modules.crm.website.reservation')->name('tinatangi.reservation');
+    Route::view('tinatangi/location', 'modules.crm.website.location')->name('tinatangi.location');
+    Route::view('tinatangi/feedback', 'modules.crm.website.feedback')->name('tinatangi.feedback');
+    Route::view('tinatangi/faq', 'modules.crm.website.faq')->name('tinatangi.faq');
 });
 
 Route::middleware('auth')->group(function () {
