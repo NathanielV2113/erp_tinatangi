@@ -1,5 +1,5 @@
 <x-layouts.app.sidebar :title="$title ?? null">
-    <flux:main class="bg-warm-white">
+    <flux:main class="bg-warm-white dark:bg-neutral-800">
         @if(session('success'))
         <script>
             Swal.fire({
