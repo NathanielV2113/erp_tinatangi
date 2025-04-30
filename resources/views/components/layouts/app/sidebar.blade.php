@@ -125,12 +125,28 @@
 
                 <flux:menu.separator />
 
-                <form method="POST" action="{{ route('logout') }}" class="w-full">
+                <form id="Logout" method="POST" action="{{ route('logout') }}" class="w-full">
                     @csrf
-                    <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full">
+                    <flux:menu.item as="button" onclick="toLogout()" icon="arrow-right-start-on-rectangle" class="w-full">
                         {{ __('Log Out') }}
                     </flux:menu.item>
                 </form>
+
+                <script>
+                    function toLogout() {
+                        Swal.fire({
+                            title: 'Are you sure you want to logout?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Yes',
+                            cancelButtonText: 'Cancel'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById("Logout").submit();
+                            }
+                        });
+                    }
+                </script>
             </flux:menu>
         </flux:dropdown>
     </flux:sidebar>
