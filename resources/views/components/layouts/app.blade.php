@@ -2,19 +2,6 @@
     <flux:main class="bg-warm-white dark:bg-neutral-800">
         
         {{ $slot }}
-        <script>
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-        </script>
         @if(session('success'))
         <script>
             Toast.fire({
