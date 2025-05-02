@@ -11,7 +11,7 @@ class UpdateScheduleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class UpdateScheduleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'type' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'work_days' => 'required',
+            'dayoff' => 'required',
+            'remarks' => 'nullable',
         ];
     }
 }

@@ -61,9 +61,18 @@ class ScheduleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateScheduleRequest $request, Schedule $schedule)
+    public function update(UpdateScheduleRequest $request, Schedule $sched)
     {
         //
+        $sched->type = $request->type;
+        $sched->start_time = $request->start_time;
+        $sched->end_time = $request->end_time;
+        $sched->work_days = $request->work_days;
+        $sched->dayoff = $request->dayoff;
+        $sched->remarks = $request->remarks;
+        $sched->save();
+        session()->flash('success', 'Updated Successfully.');
+        return redirect()->route('hrm.scheduling');
     }
 
     /**

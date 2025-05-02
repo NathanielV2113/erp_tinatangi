@@ -32,4 +32,6 @@ Route::middleware(['isHrm'])->group(function () {
 
     Route::get('hrm/scheduling', [HrmController::class, 'scheduling'])->name('hrm.scheduling');
     Route::get('hrm/scheduling/store', [ScheduleController::class, 'store'])->name('hrm.scheduling.store');
+    Route::put('/hrm/scheduling/{schedule}/update', [ScheduleController::class, 'update'])->name('hrm.scheduling.update');
+    Route::get('/hrm/scheduling/{scheduleId}/delete', [ScheduleController::class, 'destroy'])->name('hrm.scheduling.delete');
 });

@@ -39,6 +39,15 @@
                                         <td>{{ $sched->work_days }}</td>
                                         <td>{{ $sched->dayoff }}</td>
                                         <td>{{ $sched->remarks }}</td>
+                                        <td class="flex gap-2">
+                                            <flux:modal.trigger :name="'edit-sched'.$sched->id">
+                                                <button class="btn btn-soft btn-accent">Edit</button>
+                                            </flux:modal.trigger>
+
+                                            <button class="btn btn-soft btn-secondary" onclick="confirmDeletion('{{ route('hrm.scheduling.delete', $sched->id) }}')">
+                                                Delete
+                                            </button>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -78,4 +87,31 @@
             </div>
         </form>
     </flux:modal>
+    @foreach ($scheds as $sched)
+    <flux:modal :name="'edit-sched'.$sched->id" class="md:w-96">
+        <form action="{{ route('hrm.scheduling.update', $sched) }}" method="post">
+            @csrf
+            @method('PUT')
+            <div class="space-y-6">
+                <div>
+                    <flux:heading size="lg">Edit Schedule</flux:heading>
+                </div>
+
+                <flux:input name="type" label="Shift" placeholder="e.g. day, night" value="{{ old('type', $sched->type ?? '') }}"/>
+                <flux:input name="start_time" label="Start Time" type="time" value="{{ old('start_time', $sched->start_time ?? '') }}"/>
+                <flux:input name="end_time" label="End Time" type="time" value="{{ old('end_time', $sched->end_time ?? '') }}"/>
+                <flux:input name="work_days" label="Work Days" placeholder="monday-friday" value="{{ old('work_days', $sched->work_days ?? '') }}"/>
+                <flux:input name="dayoff" label="Dayoff" placeholder="friday" value="{{ old('dayoff', $sched->dayoff ?? '') }}"/>
+                <flux:input name="remarks" label="Remarks" placeholder="..." value="{{ old('remarks', $sched->remarks ?? '') }}"/>
+
+                <div class="flex">
+                    <flux:spacer />
+
+                    <flux:button type="submit" variant="primary">Save Changes</flux:button>
+                </div>
+            </div>
+        </form>
+    </flux:modal>
+    @endforeach
+
 </x-layouts.app>

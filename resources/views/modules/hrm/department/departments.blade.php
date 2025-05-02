@@ -27,10 +27,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $count = 0 ?>
-                                    @foreach ($departments as $department)
+                                    @foreach ($departments as $index => $department)
                                     <tr class="hover:bg-base-300">
-                                        <td>{{ ++$count }}</td>
+                                        <td>{{ $departments->firstItem() + $index }}</td>
                                         <td>{{ $department->name }}</td>
                                         <td>{{ $department->description }}</td>
                                         @if ($department->status == 'active')
