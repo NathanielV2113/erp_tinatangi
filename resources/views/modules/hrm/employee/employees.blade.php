@@ -83,7 +83,7 @@
                                             <a href="{{ route('hrm.employees.edit', $employee) }}" class="btn btn-soft btn-info dark:bg-neutral-800">
                                                 Edit
                                             </a>
-                                            <button class="btn btn-soft btn-secondary dark:bg-neutral-800" onclick="confirmDeletion('{{route('hrm.employees.delete', $employee->id)}}')">
+                                            <button class="btn btn-soft btn-secondary dark:bg-neutral-800" onclick="confirmDeletion('{{ route('hrm.employees.delete', $employee->id) }}')">
                                                 Delete
                                             </button>
                                         </td>

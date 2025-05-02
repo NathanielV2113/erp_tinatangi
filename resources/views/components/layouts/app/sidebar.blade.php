@@ -77,6 +77,11 @@
                 <flux:navlist.item icon="rectangle-group" :href="route('crm')" :current="request()->routeIs('crm')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
             </flux:navlist.group>
             @endrole
+            @role('employee')
+            <flux:navlist.group :heading="__('Employee')" class="grid">
+                <flux:navlist.item icon="rectangle-group" :href="route('employee')" :current="request()->routeIs('employee')" wire:navigate>{{ __('Attendance') }}</flux:navlist.item>
+            </flux:navlist.group>
+            @endrole
         </flux:navlist>
 
         <flux:spacer />
@@ -134,15 +139,24 @@
 
                 <script>
                     function toLogout() {
-                        Swal.fire({
+                        swalWithBootstrapButtons.fire({
                             title: 'Are you sure you want to logout?',
-                            icon: 'warning',
+                            icon: "warning",
                             showCancelButton: true,
-                            confirmButtonText: 'Yes',
-                            cancelButtonText: 'Cancel'
+                            confirmButtonText: "Yes!",
+                            cancelButtonText: "No, cancel!",
                         }).then((result) => {
                             if (result.isConfirmed) {
+                                swalWithBootstrapButtons.fire({
+                                    title: "Logging out!",
+                                    icon: "success"
+                                });
                                 document.getElementById("Logout").submit();
+                            } else if (
+                                /* Read more about handling dismissals below */
+                                result.dismiss === Swal.DismissReason.cancel
+                            ) {
+                                
                             }
                         });
                     }

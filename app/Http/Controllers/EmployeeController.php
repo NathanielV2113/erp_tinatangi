@@ -6,7 +6,8 @@ use App\Models\Employee;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Department;
-use SweetAlert2\Laravel\Swal;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -61,6 +62,15 @@ class EmployeeController extends Controller
         $employee->address = $request->address;
         $employee->status = $request->status;
         $employee->save();
+
+        $user = new User();
+        $user->name = $request->first_name . ' ' . $request->last_name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->last_name);
+        $user->save();
+
+        $user->syncRoles('employee');
+
         session()->flash('success', 'Created Successfully.');
         return redirect()->route('hrm.employees');
     }
@@ -135,11 +145,11 @@ class EmployeeController extends Controller
         //
         $employee = Employee::findOrFail($employeeId);
         $employee->delete();
-        return redirect()->route('hrm.employees')->with('success', 'Employee deleted successfully.');
+        return redirect()->route('hrm.employees');
     }
 
 
     public function employee(){
-        
+        return view('employee_side.attendance');
     }
 }

@@ -13,25 +13,25 @@
                         @method('PUT')
                         <div class="mb-3">
                             <label for="">Full Name</label>
-                            <input type="text" name="name" value="{{ $user->name }}" class="form-control" placeholder="Enter Full Name">
+                            <input type="text" name="name" value="{{ $user->name }}" class="input" placeholder="Enter Full Name">
                             @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="">Email Address</label>
-                            <input type="email" name="email" readonly value="{{ $user->email }}" class="form-control" placeholder="example@email.com">
+                            <input type="email" name="email" readonly value="{{ $user->email }}" class="input" placeholder="example@email.com">
                         </div>
                         <div class="mb-3">
                             <label for="">Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="********">
+                            <input type="password" name="password" class="input" placeholder="********">
                             @error('password')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="">Role</label>
-                            <select name="roles[]" class="form-control" multiple>
+                            <select name="roles[]" class="input" multiple>
                                 <option value="">Select Role</option>
                                 @foreach ($roles as $role)
                                 <option 

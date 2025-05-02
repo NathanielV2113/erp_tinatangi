@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\Payroll;
 use App\Models\Department;
 use Carbon\Carbon;
+use App\Models\Schedule;
 
 class HrmController extends Controller
 {
@@ -36,7 +37,8 @@ class HrmController extends Controller
         return view('modules.hrm.payroll.payroll', compact('employees', 'payrolls', 'departments'));
     }
     public function scheduling(){
-        return view('modules.hrm.scheduling.scheduling');
+        $scheds = Schedule::paginate(10);
+        return view('modules.hrm.scheduling.scheduling', compact('scheds'));
     }
     public function attendance(){
         return view('modules.hrm.scheduling.attendance');

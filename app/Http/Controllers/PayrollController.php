@@ -54,7 +54,7 @@ class PayrollController extends Controller
     // }
 
 
-    public function generate()
+    public function generate(StorePayrollRequest $request)
     {
         $employees = Employee::all();
         $mandatoryDeductions = MandatoryDeduction::sum('amount'); // Get total mandatory deductions

@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePayrollRequest extends FormRequest
+class StoreScheduleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,11 +22,12 @@ class StorePayrollRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'month' => 'required',
-            'quarter' => 'required',
-            'week' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
+            'type' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'work_days' => 'required',
+            'dayoff' => 'required',
+            'remarks' => 'nullable',
         ];
     }
 }
