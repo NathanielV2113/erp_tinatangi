@@ -26,6 +26,7 @@
             toast.onmouseleave = Swal.resumeTimer;
         }
     });
+    
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: "btn btn-soft btn-primary",

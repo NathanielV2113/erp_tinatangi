@@ -36,7 +36,6 @@ class ScheduleController extends Controller
         $sched->end_time = $request->end_time;
         $sched->work_days = $request->work_days;
         $sched->dayoff = $request->dayoff;
-        $sched->remarks = $request->remarks;
         $sched->save();
         session()->flash('success', 'Created Successfully.');
         return redirect()->route('hrm.scheduling');
@@ -69,7 +68,6 @@ class ScheduleController extends Controller
         $sched->end_time = $request->end_time;
         $sched->work_days = $request->work_days;
         $sched->dayoff = $request->dayoff;
-        $sched->remarks = $request->remarks;
         $sched->save();
         session()->flash('success', 'Updated Successfully.');
         return redirect()->route('hrm.scheduling');
@@ -78,8 +76,11 @@ class ScheduleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Schedule $schedule)
+    public function destroy($scheduleId)
     {
         //
+        $schedule = Schedule::findOrFail($scheduleId);
+        $schedule->delete();
+        return redirect()->route('hrm.scheduling');
     }
 }

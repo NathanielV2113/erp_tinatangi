@@ -56,10 +56,26 @@ class PayrollController extends Controller
 
     public function generate(StorePayrollRequest $request)
     {
+        // dd($request);
+        $month = substr($request->start_date, 5, 2);
+        $month1 = substr($request->end_date, 5, 2);
+        $date = substr($request->start_date, 8, 2);
+        $date1 = substr($request->end_date, 8, 2);
+        $year = substr($request->start_date, 0, 4);
+        $year1 = substr($request->end_date, 0, 4);
+        
+        if($request->start_date < $request->end_date && 
+        $year == $year1 && $month == $month1) {
+            return redirect()->route('hrm.payroll')->with('success', value: 'Date range is valid');
+        } else {
+            session()->flash('failed', 'Date range is Invalid.');
+            return redirect()->route('hrm.payroll');
+        }
+
+        
         $employees = Employee::all();
         $mandatoryDeductions = MandatoryDeduction::sum('amount'); // Get total mandatory deductions
         $attendances = Attendance::whereIn('employee_id', $employees->pluck('id'))->get(); // Filter related attendance
-
         // $data = Payroll::create([
         //     'employee_id' => (int) $id,
         //     'month' => (int) $request->month,

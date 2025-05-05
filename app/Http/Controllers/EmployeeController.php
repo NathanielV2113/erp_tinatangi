@@ -62,8 +62,9 @@ class EmployeeController extends Controller
         $employee->address = $request->address;
         $employee->status = $request->status;
         $employee->save();
-
+        $employeeId = Employee::where('email', $request->email)->pluck('id');
         $user = new User();
+        $user->id = substr($employeeId, 1, -1);
         $user->name = $request->first_name . ' ' . $request->last_name;
         $user->email = $request->email;
         $user->password = Hash::make($request->last_name);
@@ -153,6 +154,19 @@ class EmployeeController extends Controller
     {
         $events = [];
 
+        $pos = Employee::where('id', auth()->user()->id)->pluck('position');
+        $dept = Employee::where('id', auth()->user()->id)->pluck('department');
+        $deptss =Department::all();
+        // dd($pos);
+        $dept = substr($dept, 2, -2);
+        $pos = substr($pos, 1, -1);
+
+        foreach ($deptss as $depts){
+            if($dept == $depts->id){
+                $dept = $depts->name;
+            }
+        }
+
         $start_dates = ['2023-06-01', '2023-06-07', '2023-06-11', '2023-06-12T10:30:00', '2023-06-12', '2023-06-12', '2023-06-13', '2023-06-28'];
         $end_date = ['', '2023-06-10', '2023-06-13', '2023-06-12T12:30:00', '2023-06-12T12:00:00', '2023-06-12T14:30:00', '2023-06-13T07:00:00', ''];
 
@@ -169,33 +183,35 @@ class EmployeeController extends Controller
         }
 
         $data = [
-            'events' => $events
+            'events' => $events,
+            'dept' => $dept,
+            'pos' => $pos
         ];
         return view('employee_side.attendance', $data);
     }
 
     // public function calendar()
     // {
-        // $events = [];
+    // $events = [];
 
-        // $start_dates = ['2023-06-01', '2023-06-07', '2023-06-11', '2023-06-12T10:30:00', '2023-06-12', '2023-06-12', '2023-06-13', '2023-06-28'];
-        // $end_date = ['', '2023-06-10', '2023-06-13', '2023-06-12T12:30:00', '2023-06-12T12:00:00', '2023-06-12T14:30:00', '2023-06-13T07:00:00', ''];
+    // $start_dates = ['2023-06-01', '2023-06-07', '2023-06-11', '2023-06-12T10:30:00', '2023-06-12', '2023-06-12', '2023-06-13', '2023-06-28'];
+    // $end_date = ['', '2023-06-10', '2023-06-13', '2023-06-12T12:30:00', '2023-06-12T12:00:00', '2023-06-12T14:30:00', '2023-06-13T07:00:00', ''];
 
-        // $titles = ['All Day Event', 'Long Event', 'Conference', 'Meeting', 'Lunch', 'Meeting', 'Birthday Party', 'Click for Google'];
-        // $links = ['', '', '', '', '', '', '', 'https://www.google.com/'];
+    // $titles = ['All Day Event', 'Long Event', 'Conference', 'Meeting', 'Lunch', 'Meeting', 'Birthday Party', 'Click for Google'];
+    // $links = ['', '', '', '', '', '', '', 'https://www.google.com/'];
 
-        // foreach ($titles as $key => $title) {
-        //     $events[]   = [
-        //         'title' => $title,
-        //         'start' => $start_dates[$key],
-        //         'end'   => $end_date[$key],
-        //         'url'   => $links[$key],
-        //     ];
-        // }
+    // foreach ($titles as $key => $title) {
+    //     $events[]   = [
+    //         'title' => $title,
+    //         'start' => $start_dates[$key],
+    //         'end'   => $end_date[$key],
+    //         'url'   => $links[$key],
+    //     ];
+    // }
 
-        // $data = [
-        //     'events' => $events
-        // ];
+    // $data = [
+    //     'events' => $events
+    // ];
 
     //     return view('fullcalendar', $data);
     // }

@@ -18,6 +18,5 @@ class Schedule extends Model
         'end_time',
         'work_days',
         'dayoff',
-        'remarks'
     ];
 }

@@ -7,8 +7,7 @@
                         <div class="w-1/2">
                             <h1 class="text-2xl font-semibold">Payroll</h1>
                         </div>
-
-                        <form action="{{ route('hrm.payroll.generate') }}" class="flex items-center">
+                        <form id="generatePayroll" action="{{ route('hrm.payroll.generate') }}" class="flex items-center">
                             <div class="form-group mr-4 flex items-center">
                                 <label class="font-medium w-30" for="start_date">Start Date</label>
                                 <input
@@ -30,7 +29,7 @@
                                 @enderror
                             </div>
                             <div class="w-1/2 ml-4">
-                                <button class="btn btn-soft btn-accent">Generate Payroll</button>
+                                <button onclick="dateRangeConfirmation()" class="btn btn-soft btn-accent">Generate Payroll</button>
                             </div>
                         </form>
                     </div>
@@ -110,12 +109,28 @@
                             </table>
                         </div>
                         <div class="join mt-3">
-
+                            {{ $payrolls->links() }}
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function dateRangeConfirmation() {
+            event.preventDefault();
+            const start_date = document.getElementById("start_date").value;
+            const end_date = document.getElementById("end_date").value;
+            console.log(start_date);
+            console.log(end_date);
+            if (start_date != '' && end_date != '') {
+                document.getElementById("generatePayroll").submit();
+            } else {
+                swalWithBootstrapButtons.fire({
+                    title: "Please select a date range",
+                    icon: "error"
+                });
+            }
+        }
+    </script>
 </x-layouts.app>

@@ -15,7 +15,8 @@
     .card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       background-color: var(--color-warm-white);
-      border: 1px solid var(--color-caramel);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
       border-radius: 0.5rem;
       padding: 1rem;
     }

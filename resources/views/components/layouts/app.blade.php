@@ -13,7 +13,7 @@
         @if(session('failed'))
         <script>
             Toast.fire({
-                icon: "success",
+                icon: "error",
                 title: "{{ session('failed') }}"
             });
         </script>

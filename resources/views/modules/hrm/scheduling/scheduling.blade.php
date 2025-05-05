@@ -25,7 +25,7 @@
                                         <th>End Time</th>
                                         <th>Work Days</th>
                                         <th>Dayoff</th>
-                                        <th>Remarks</th>
+                                        <th>Deployment</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -38,13 +38,13 @@
                                         <td>{{ $sched->end_time }}</td>
                                         <td>{{ $sched->work_days }}</td>
                                         <td>{{ $sched->dayoff }}</td>
-                                        <td>{{ $sched->remarks }}</td>
+                                        <td>{{ $sched->deployment }}</td>
                                         <td class="flex gap-2">
                                             <flux:modal.trigger :name="'edit-sched'.$sched->id">
                                                 <button class="btn btn-soft btn-accent">Edit</button>
                                             </flux:modal.trigger>
 
-                                            <button class="btn btn-soft btn-secondary" onclick="confirmDeletion('{{ route('hrm.scheduling.delete', $sched->id) }}')">
+                                            <button class="btn btn-soft btn-secondary dark:bg-neutral-800" onclick="confirmDeletion('{{ route('hrm.scheduling.delete', $sched->id) }}')">
                                                 Delete
                                             </button>
                                         </td>
@@ -65,6 +65,7 @@
 
 
 
+
     <flux:modal name="add-sched" class="md:w-96">
         <form action="{{ route('hrm.scheduling.store') }}">
             <div class="space-y-6">
@@ -72,12 +73,36 @@
                     <flux:heading size="lg">Add Schedule</flux:heading>
                 </div>
 
-                <flux:input name="type" label="Shift" placeholder="e.g. day, night" />
+                <flux:input name="type" label="Shift" placeholder="e.g. Morning, Night" />
                 <flux:input name="start_time" label="Start Time" type="time" />
                 <flux:input name="end_time" label="End Time" type="time" />
-                <flux:input name="work_days" label="Work Days" placeholder="monday-friday" />
-                <flux:input name="dayoff" label="Dayoff" placeholder="friday" />
-                <flux:input name="remarks" label="Remarks" placeholder="..." />
+
+
+
+                <label>Selected Items:</label><br>
+                <textarea class="input" id="output" rows="7" cols="30" readonly></textarea>
+                <br>
+                <label>Select Work Days:</label><br>
+
+
+                <flux:select name="work_days[]" label="Work Days" id="work_days" placeholder="Monday-Friday" mulitple size="7">
+                    <option value="1">Monday</option>
+                    <option value="2">Tuesday</option>
+                    <option value="3">Wednesday</option>
+                    <option value="4">Thursday</option>
+                    <option value="5">Friday</option>
+                    <option value="6">Saturday</option>
+                    <option value="0">Sunday</option>
+                </flux:select>
+                <flux:select name="dayoff" label="Dayoff" placeholder="Monday-Friday">
+                    <option value="1">Monday</option>
+                    <option value="2">Tuesday</option>
+                    <option value="3">Wednesday</option>
+                    <option value="4">Thursday</option>
+                    <option value="5">Friday</option>
+                    <option value="6">Saturday</option>
+                    <option value="0">Sunday</option>
+                </flux:select>
 
                 <div class="flex">
                     <flux:spacer />
@@ -97,12 +122,12 @@
                     <flux:heading size="lg">Edit Schedule</flux:heading>
                 </div>
 
-                <flux:input name="type" label="Shift" placeholder="e.g. day, night" value="{{ old('type', $sched->type ?? '') }}"/>
-                <flux:input name="start_time" label="Start Time" type="time" value="{{ old('start_time', $sched->start_time ?? '') }}"/>
-                <flux:input name="end_time" label="End Time" type="time" value="{{ old('end_time', $sched->end_time ?? '') }}"/>
-                <flux:input name="work_days" label="Work Days" placeholder="monday-friday" value="{{ old('work_days', $sched->work_days ?? '') }}"/>
-                <flux:input name="dayoff" label="Dayoff" placeholder="friday" value="{{ old('dayoff', $sched->dayoff ?? '') }}"/>
-                <flux:input name="remarks" label="Remarks" placeholder="..." value="{{ old('remarks', $sched->remarks ?? '') }}"/>
+                <flux:input name="type" label="Shift" placeholder="e.g. morning, night" value="{{ old('type', $sched->type ?? '') }}" />
+                <flux:input name="start_time" label="Start Time" type="time" value="{{ old('start_time', $sched->start_time ?? '') }}" />
+                <flux:input name="end_time" label="End Time" type="time" value="{{ old('end_time', $sched->end_time ?? '') }}" />
+                <flux:input name="work_days" label="Work Days" placeholder="monday-friday" value="{{ old('work_days', $sched->work_days ?? '') }}" />
+                <flux:input name="dayoff" label="Dayoff" placeholder="friday" value="{{ old('dayoff', $sched->dayoff ?? '') }}" />
+                <flux:input name="deployment" label="Deployment" placeholder="..." value="{{ old('deployment', $sched->deployment ?? '') }}" />
 
                 <div class="flex">
                     <flux:spacer />
@@ -114,4 +139,13 @@
     </flux:modal>
     @endforeach
 
+    <script>
+        const work_days = document.getElementById('work_days');
+        const output = document.getElementById('output');
+
+        work_days.addEventListener('change', () => {
+            const selected = Array.from(work_days.selectedOptions).map(opt => opt.value);
+            output.value = selected.join(', ');
+        });
+    </script>
 </x-layouts.app>

@@ -32,7 +32,7 @@ class HrmController extends Controller
 
     public function payroll(){
         $employees = Employee::all();
-        $payrolls = Payroll::all();
+        $payrolls = Payroll::paginate(10);
         $departments = Department::all();
         return view('modules.hrm.payroll.payroll', compact('employees', 'payrolls', 'departments'));
     }

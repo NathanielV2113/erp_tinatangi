@@ -27,7 +27,6 @@ class StoreScheduleRequest extends FormRequest
             'end_time' => 'required',
             'work_days' => 'required',
             'dayoff' => 'required',
-            'remarks' => 'nullable',
         ];
     }
 }

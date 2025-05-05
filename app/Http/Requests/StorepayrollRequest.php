@@ -11,7 +11,7 @@ class StorePayrollRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,9 +22,6 @@ class StorePayrollRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'month' => 'required',
-            'quarter' => 'required',
-            'week' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
         ];

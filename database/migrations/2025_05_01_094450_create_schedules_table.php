@@ -17,9 +17,8 @@ return new class extends Migration
             $table->string('type');
             $table->time('start_time');
             $table->time('end_time');
-            $table->String('work_days');
-            $table->String('dayoff');
-            $table->String('remarks')->nullable();
+            $table->longText('work_days');
+            $table->longText('dayoff');
             $table->timestamps();
             $table->softDeletes();
         });
