@@ -107,10 +107,11 @@
         </div>
         <div class="flex items-center space-x-4 border px-5 py-2 rounded-full shadow-md">
           <!-- Store Location with icon -->
-          <a href="{{ route('tinatangi.location') }}" class="text-white font-medium transition hover:text-white">
+          
+          @if(Auth::check())
+          <a href="{{ route('tinatangi.location.auth') }}" class="text-white font-medium transition hover:text-white">
             <i class="fa-solid fa-location-dot"></i> Store Location
           </a>
-          @if(Auth::check())
           <form id="logout-form" method="POST" action="{{ route('logout') }}">
             @csrf
           </form>
@@ -123,6 +124,9 @@
             <span class="ml-2">Logout</span>
           </button>
           @else
+          <a href="{{ route('tinatangi.location') }}" class="text-white font-medium transition hover:text-white">
+            <i class="fa-solid fa-location-dot"></i> Store Location
+          </a>
           <a href="{{ route('login') }}" class="text-white flex items-center transition hover:scale-110 transform duration-300 rounded-full p-2 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -147,16 +151,30 @@
             <img src="/img/website-imgs/tinatangilogo2.png" alt="Logo" class="h-12">
           </div>
           <!-- Navigation Links with FAQ added -->
-          <div class="mt-4 lg:mt-0">
+           @if (Auth::check())
+           <div class="mt-4 lg:mt-0">
             <ul class="flex space-x-6">
               <li><a href="{{ route('tinatangi.home') }}#top" class="hover:text-gray-400">Home</a></li>
               <li><a href="{{ route('tinatangi.home') }}#about" class="hover:text-gray-400">About Us</a></li>
-              <li><a href="{{ route('tinatangi.menu') }}#food-menu" class="hover:text-gray-400">Menu</a></li>
+              <li><a href="{{ route('tinatangi.menu.auth') }}" class="hover:text-gray-400">Menu</a></li>
               <li><a href="{{ route('tinatangi.home') }}#tinatangi-gallery" class="hover:text-gray-400">Gallery</a></li>
-              <li><a href="{{ route('tinatangi.faq') }}#faq" class="hover:text-gray-400">FAQ</a></li>
-              <li><a href="{{ route('tinatangi.feedback') }}#feedback" class="hover:text-gray-400">Feedback</a></li>
+              <li><a href="{{ route('tinatangi.faq.auth') }}" class="hover:text-gray-400">FAQ</a></li>
+              <li><a href="{{ route('tinatangi.feedback') }}" class="hover:text-gray-400">Feedback</a></li>
             </ul>
           </div>
+           @else
+           <div class="mt-4 lg:mt-0">
+            <ul class="flex space-x-6">
+              <li><a href="{{ route('tinatangi.home') }}#top" class="hover:text-gray-400">Home</a></li>
+              <li><a href="{{ route('tinatangi.home') }}#about" class="hover:text-gray-400">About Us</a></li>
+              <li><a href="{{ route('tinatangi.menu') }}" class="hover:text-gray-400">Menu</a></li>
+              <li><a href="{{ route('tinatangi.home') }}#tinatangi-gallery" class="hover:text-gray-400">Gallery</a></li>
+              <li><a href="{{ route('tinatangi.faq') }}" class="hover:text-gray-400">FAQ</a></li>
+              <li><a href="{{ route('tinatangi.feedback') }}" class="hover:text-gray-400">Feedback</a></li>
+            </ul>
+          </div>
+           @endif
+          
           <!-- Contact Information -->
           <div class="mt-4 lg:mt-0 text-center lg:text-right">
             <p class="text-sm">

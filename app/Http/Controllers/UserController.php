@@ -13,8 +13,10 @@ class UserController extends Controller
     public function index()
     {
         $users = User::get();
+        $roles = Role::pluck('name','name')->all();
         return view('admin.role-permission.user.index', [
             'users' => $users,
+            'roles' => $roles,
         ]);
     }
 
@@ -43,7 +45,7 @@ class UserController extends Controller
 
         $user->syncRoles($request->roles);
 
-        return redirect('/admin/users')->with('status', 'User Created Successfully with Roles');
+        return redirect('/admin/users')->with('success', 'User Created Successfully with Roles');
     }
 
     public function edit(User $user)

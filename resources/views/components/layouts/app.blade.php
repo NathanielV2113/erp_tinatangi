@@ -1,38 +1,23 @@
 <x-layouts.app.sidebar :title="$title ?? null">
     <flux:main class="bg-warm-white dark:bg-neutral-800">
+        
+        {{ $slot }}
         @if(session('success'))
         <script>
-            Swal.fire({
-                title: "{{ session('success') }}",
-                icon: 'success',
-                confirmButtonText: 'Okay'
+            Toast.fire({
+                icon: "success",
+                title: "{{ session('success') }}"
             });
         </script>
         @endif
         @if(session('failed'))
         <script>
-            Swal.fire({
-                title: "{{ session('failed') }}",
-                icon: 'error',
-                confirmButtonText: 'Okay'
+            Toast.fire({
+                icon: "error",
+                title: "{{ session('failed') }}"
             });
         </script>
         @endif
-        {{ $slot }}
-        <script>
-            function confirmDeletion(url) {
-                Swal.fire({
-                    title: 'Are you sure you want to delete?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes, delete!',
-                    cancelButtonText: 'Cancel'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = url; // Redirect to deletion route
-                    }
-                });
-            }
-        </script>
+       
     </flux:main>
 </x-layouts.app.sidebar>

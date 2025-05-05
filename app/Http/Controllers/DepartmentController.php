@@ -106,6 +106,6 @@ class DepartmentController extends Controller
         //
         $department = Department::findOrFail($departmentId);
         $department->delete();
-        return redirect()->route('hrm.departments')->with('success', 'Department deleted successfully.');
+        return redirect()->route('hrm.departments');
     }
 }

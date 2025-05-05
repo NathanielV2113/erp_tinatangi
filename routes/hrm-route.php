@@ -5,6 +5,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PayrollController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HrmController;
+use App\Http\Controllers\ScheduleController;
 
 Route::middleware(['isHrm'])->group(function () {
     Route::get('/hrm/employees', [EmployeeController::class, 'index'])->name('hrm.employees');
@@ -16,7 +17,7 @@ Route::middleware(['isHrm'])->group(function () {
     Route::get('/hrm/employees/{employeeId}/show', [EmployeeController::class, 'show'])->name('hrm.employees.show');
 
     Route::get('/hrm/departments', [DepartmentController::class, 'index'])->name('hrm.departments');
-    Route::get('/hrm/departments/create', [DepartmentController::class, 'create'])->name('hrm.departments.create');
+    // Route::get('/hrm/departments/create', [DepartmentController::class, 'create'])->name('hrm.departments.create');
     Route::post('/hrm/departments/store', [DepartmentController::class, 'store'])->name('hrm.departments.store');
     Route::get('/hrm/departments/edit/{department}', [DepartmentController::class, 'edit'])->name('hrm.departments.edit');
     Route::put('/hrm/departments/{department}/update', [DepartmentController::class, 'update'])->name('hrm.departments.update');
@@ -30,5 +31,7 @@ Route::middleware(['isHrm'])->group(function () {
     Route::get('hrm/attendance', [HrmController::class, 'attendance'])->name('hrm.attendance');
 
     Route::get('hrm/scheduling', [HrmController::class, 'scheduling'])->name('hrm.scheduling');
-
+    Route::get('hrm/scheduling/store', [ScheduleController::class, 'store'])->name('hrm.scheduling.store');
+    Route::put('/hrm/scheduling/{schedule}/update', [ScheduleController::class, 'update'])->name('hrm.scheduling.update');
+    Route::get('/hrm/scheduling/{scheduleId}/delete', [ScheduleController::class, 'destroy'])->name('hrm.scheduling.delete');
 });

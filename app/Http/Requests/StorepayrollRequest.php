@@ -11,7 +11,7 @@ class StorePayrollRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,19 +22,8 @@ class StorePayrollRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'required',
-            'pay_period' => 'required',
-            'days_of_present' => 'required',
-            'days_of_absent' => 'required',
-            'hours_late' => 'required',
-            'mandatory_deductions' => 'required',
-            'tax' => 'required',
-            'salary' => 'required',
-            'over_time' => 'required',
-            'bonus' => 'required',
-            'advance_payments' => 'required',
-            'net_pay' => 'required',
-            'status' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
         ];
     }
 }
