@@ -1,4 +1,9 @@
 <x-layouts.app :title="__('Scheduling')">
+
+    <!-- head: below existing links -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@4.0.1/dist/css/multi-select-tag.min.css">
+
+
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-12">
@@ -77,15 +82,7 @@
                 <flux:input name="start_time" label="Start Time" type="time" />
                 <flux:input name="end_time" label="End Time" type="time" />
 
-
-
-                <label>Selected Items:</label><br>
-                <textarea class="input" id="output" rows="7" cols="30" readonly></textarea>
-                <br>
-                <label>Select Work Days:</label><br>
-
-
-                <flux:select name="work_days[]" label="Work Days" id="work_days" placeholder="Monday-Friday" mulitple size="7">
+                <flux:select id="work_days" name="work_days[]" label="Work Days" multiple>
                     <option value="1">Monday</option>
                     <option value="2">Tuesday</option>
                     <option value="3">Wednesday</option>
@@ -94,15 +91,7 @@
                     <option value="6">Saturday</option>
                     <option value="0">Sunday</option>
                 </flux:select>
-                <flux:select name="dayoff" label="Dayoff" placeholder="Monday-Friday">
-                    <option value="1">Monday</option>
-                    <option value="2">Tuesday</option>
-                    <option value="3">Wednesday</option>
-                    <option value="4">Thursday</option>
-                    <option value="5">Friday</option>
-                    <option value="6">Saturday</option>
-                    <option value="0">Sunday</option>
-                </flux:select>
+                <flux:input id="dayoff" name="dayoff[]" label="Dayoff" readonly />
 
                 <div class="flex">
                     <flux:spacer />
@@ -139,13 +128,78 @@
     </flux:modal>
     @endforeach
 
+    <!-- End of <body> -->
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@4.0.1/dist/js/multi-select-tag.min.js"></script>
     <script>
-        const work_days = document.getElementById('work_days');
-        const output = document.getElementById('output');
-
-        work_days.addEventListener('change', () => {
-            const selected = Array.from(work_days.selectedOptions).map(opt => opt.value);
-            output.value = selected.join(', ');
+        var workDaysSelector = new MultiSelectTag('work_days', {
+            maxSelection: 5,
+            required: true,
+            placeholder: 'Select Work Days',
         });
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const workDaysSelect = document.getElementById("work_days");
+            const dayOffInput = document.getElementById("dayoff");
+
+            if (!workDaysSelect || !dayOffInput) {
+                console.error("Error: Elements not found.");
+                return;
+            }
+
+            function updateDayOffValue() {
+                let allDays = ["0", "1", "2", "3", "4", "5", "6"]; // Sunday-Saturday values
+                let selectedWorkDays = Array.from(workDaysSelect.selectedOptions).map(option => option.value);
+                let unselectedDays = allDays.filter(day => !selectedWorkDays.includes(day));
+
+                console.log("Unselected Days:", unselectedDays);
+
+                // Update input value with unselected days
+                dayOffInput.value = unselectedDays.map(day => {
+                    return workDaysSelect.querySelector(`option[value="${day}"]`).textContent;
+                }).join(", ");
+
+                // Force UI refresh for frameworks like Flux
+                setTimeout(() => {
+                    dayOffInput.dispatchEvent(new Event("input"));
+                }, 50); // Small delay ensures UI updates correctly
+            }
+
+            // Use "change" instead of "click" for dropdown selections
+            workDaysSelect.addEventListener("change", updateDayOffValue);
+            updateDayOffValue(); // Ensure initial state updates
+        });
+
+
+
+
+
+
+
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     const workDaysSelect = document.getElementById("work_days");
+        //     const dayOffInput = document.getElementById("dayoff");
+
+        //     if (!workDaysSelect || !dayOffInput) {
+        //         console.error("Elements not found.");
+        //         return;
+        //     }
+
+        //     function updateDayOffValue() {
+        //         let allDays = ["0", "1", "2", "3", "4", "5", "6"]; // Corresponding values for Sunday-Saturday
+        //         let selectedWorkDays = Array.from(workDaysSelect.selectedOptions).map(option => option.value);
+        //         let unselectedDays = allDays.filter(day => !selectedWorkDays.includes(day));
+
+        //         console.log("Unselected Days:", unselectedDays);
+
+        //         // Set the Dayoff input field with unselected days
+        //         dayOffInput.value = unselectedDays.map(day => {
+        //             return workDaysSelect.querySelector(`option[value="${day}"]`).textContent;
+        //         }).join(", ");
+        //     }
+
+        //     workDaysSelect.addEventListener("change", updateDayOffValue);
+        //     updateDayOffValue(); // Run on page load
+        // });
     </script>
 </x-layouts.app>
