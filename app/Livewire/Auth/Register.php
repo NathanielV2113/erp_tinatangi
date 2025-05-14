@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 #[Layout('components.layouts.auth')]
 class Register extends Component
 {
@@ -24,13 +25,14 @@ class Register extends Component
     /**
      * Handle an incoming registration request.
      */
-    public function register(): void
+    public function register(Request $request)
     {
-        $validated = $this->validate([
+        // dd($request->all());
+        $validated = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-        ]);
+        ])->validate();
 
         $validated['password'] = Hash::make($validated['password']);
 
@@ -38,6 +40,6 @@ class Register extends Component
 
         Auth::login($user);
 
-        $this->redirect(route('dashboard', absolute: false), navigate: true);
+        return redirect()->route('home')->with('success', 'Registration successful. Welcome to Tinatangi Cafe!');
     }
 }
