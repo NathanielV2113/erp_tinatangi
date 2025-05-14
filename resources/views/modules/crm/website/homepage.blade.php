@@ -95,7 +95,7 @@
 <!-- HERO SECTION -->
 <section class="relative h-screen animate-fadeInUp">
   <!-- Hero background image -->
-  <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/img/website-imgs/hero-bg3.jpg');"></div>
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/img/website-imgs/hero-bg3.png');"></div>
   <!-- Hero content -->
   <div class="relative z-10 h-full flex items-center px-4 sm:px-12">
     <div class="flex-grow flex flex-col md:flex-row items-center w-full">

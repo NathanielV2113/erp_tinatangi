@@ -3,103 +3,200 @@
 @section('content')
 <!-- MAIN CONTENT -->
 <main class="flex-grow py-12">
-    <div class="container mx-auto px-4">
-      <div class="bg-[var(--color-cream)] shadow-lg rounded-xl p-8 w-full max-w-lg mx-auto">
-        <!-- Updated form header and fields -->
-        <h2 class="text-3xl font-semibold text-center text-[var(--color-coffee)] mb-8">Book A Table</h2>
-        <form action="#" method="POST">
+  <div class="container mx-auto px-4">
+    <!-- Flex container with two separate columns -->
+    <div class="flex flex-col md:flex-row gap-8 w-full max-w-5xl mx-auto">
+      <!-- Reservation Form Card -->
+      <div class="bg-[var(--color-cream)] p-8 shadow-lg rounded-xl w-full md:w-1/2">
+        <h2 class="text-3xl font-semibold text-center text-[var(--color-coffee)] mb-8">Reserve Our Place</h2>
+        <form action="{{ route('tinatangi.reservation.store') }}" method="POST" id="reservationForm">
+          @csrf
+          @method('POST')
+          <!-- Full Name -->
           <div class="mb-6">
-            <label for="yourName" class="block text-[var(--color-coffee)] font-medium mb-2">Your Name</label>
-            <input type="text" id="yourName" name="yourName" placeholder="Enter your name" required
+            <label for="fullName" class="block text-[var(--color-coffee)] font-medium mb-2">Full Name</label>
+            <input type="text" id="fullName" name="name" placeholder="Enter your full name" required
               class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-caramel)] focus:border-[var(--color-caramel)] transition duration-300 ease-in-out shadow-sm hover:shadow-lg">
+            @error('name')
+            <div class="text-red-500 text-sm mt-1">
+              {{ $message }}
+            </div>
+            @enderror
           </div>
+
+          <!-- Email -->
           <div class="mb-6">
-            <label for="phoneNumber" class="block text-[var(--color-coffee)] font-medium mb-2">Phone Number</label>
-            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number" required
+            <label for="email" class="block text-[var(--color-coffee)] font-medium mb-2">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required
               class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-caramel)] focus:border-[var(--color-caramel)] transition duration-300 ease-in-out shadow-sm hover:shadow-lg">
+            @error('email')
+            <div class="text-red-500 text-sm mt-1">
+              {{ $message }}
+            </div>
+            @enderror
           </div>
-          <div class="mb-6">
-            <label for="email" class="block text-[var(--color-coffee)] font-medium mb-2">Your Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email address" required
-              class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-caramel)] focus:border-[var(--color-caramel)] transition duration-300 ease-in-out shadow-sm hover:shadow-lg">
-          </div>
-          <div class="mb-6">
-            <label for="persons" class="block text-[var(--color-coffee)] font-medium mb-2">How many persons?</label>
-            <select id="persons" name="persons" required
-              class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-caramel)] focus:border-[var(--color-caramel)] transition duration-300 ease-in-out shadow-sm hover:shadow-lg">
-              <option value="" disabled selected>Select number of persons</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </div>
+          <!-- Date -->
           <div class="mb-6">
             <label for="date" class="block text-[var(--color-coffee)] font-medium mb-2">Date</label>
-            <input type="date" id="date" name="date" required
+            <input type="date" id="dateInput" name="date" required
               class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-caramel)] focus:border-[var(--color-caramel)] transition duration-300 ease-in-out shadow-sm hover:shadow-lg">
+            @error('date')
+            <div class="text-red-500 text-sm mt-1">
+              {{ $message }}
+            </div>
+            @enderror
           </div>
+          <!-- Time -->
+          <div class="mb-6">
+            <label for="timein" class="block text-[var(--color-coffee)] font-medium mb-2">Time-in</label>
+            <input type="time" id="timeinInput" name="timein" required
+              class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-caramel)] focus:border-[var(--color-caramel)] transition duration-300 ease-in-out shadow-sm hover:shadow-lg">
+            @error('timein')
+            <div class="text-red-500 text-sm mt-1">
+              {{ $message }}
+            </div>
+            @enderror
+          </div>
+          <div class="mb-6">
+            <label for="timeout" class="block text-[var(--color-coffee)] font-medium mb-2">Time-out</label>
+            <input type="time" id="timeoutInput" name="timeout" required
+              class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-caramel)] focus:border-[var(--color-caramel)] transition duration-300 ease-in-out shadow-sm hover:shadow-lg">
+            @error('timeout')
+            <div class="text-red-500 text-sm mt-1">
+              {{ $message }}
+            </div>
+            @enderror
+          </div>
+
+          <!-- Venue Selection -->
+          <div class="mb-6">
+            <label for="venue" class="block text-[var(--color-coffee)] font-medium mb-2">Select Venue</label>
+            <select id="venue" name="table" required
+              class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-caramel)] focus:border-[var(--color-caramel)] transition duration-300 ease-in-out shadow-sm hover:shadow-lg">
+              <option value="" disabled selected>Select a venue</option>
+              <option value="1">GAZEBO SPOT - 1 to 4 PERSONS</option>
+              <option value="2">LIBRARY HALL - 6-10 PERSONS</option>
+              <option value="3">FUNCTION HALL - 10 OR MORE PERSONS</option>
+            </select>
+            @error('table')
+            <div class="text-red-500 text-sm mt-1">
+              {{ $message }}
+            </div>
+            @enderror
+          </div>
+
+          <!-- Submit Button -->
           <div class="flex justify-center">
             <button type="submit"
               class="bg-[var(--color-caramel)] hover:bg-[var(--color-brownie)] text-white px-8 py-3 rounded-lg transition duration-300 ease-in-out shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--color-caramel)] focus:ring-opacity-50">
-              BOOK NOW
+              Book Now
             </button>
           </div>
         </form>
       </div>
-    </div>
-  </main>
-  <!-- Modal (Hidden by default, with an overlay) -->
-  <div id="reservationModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-    <div class="bg-white rounded-lg shadow-lg p-8 max-w-md mx-auto">
-      <h3 class="text-xl font-semibold mb-4">Reservation Submitted</h3>
-      <p id="modalMessage" class="mb-4">
-        Thank you for booking with us. We will contact you soon regarding your reservation.
-      </p>
-      <button id="closeModal" class="bg-[var(--color-caramel)] hover:bg-[var(--color-brownie)] text-white px-6 py-2 rounded transition">
-        Close
-      </button>
+
+      <!-- Image Container Card (Right Side) -->
+      <div class="w-full md:w-1/2 flex flex-col justify-center items-center">
+        <!-- Professional label on top -->
+        <p class="mb-2 text-lg font-semibold text-[var(--color-coffee)]">Venue Preview</p>
+        <!-- Container for the image with cream background -->
+        <div class="bg-[var(--color-cream)] p-4 rounded-xl shadow-xl overflow-hidden">
+          <img id="venueImage" src="/img/website-imgs/reservation-default.png" alt="Venue Preview"
+            class="w-full h-auto rounded object-cover transition-opacity duration-500">
+        </div>
+        <!-- Label displaying the name of the selected venue -->
+        <p id="venueNameLabel" class="mt-2 text-lg font-semibold text-[var(--color-coffee)]">Select a Venue</p>
+      </div>
     </div>
   </div>
+</main>
 @endsection
 @section('scripts')
 <script>
-    const reservationForm = document.querySelector("form");
-    reservationForm.addEventListener("submit", function (e) {
-      e.preventDefault(); // Prevent default form submission
+  document.addEventListener("DOMContentLoaded", function() {
+    const dateInput = document.getElementById("dateInput");
+    let tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1); // Set to the next day
+    let formattedTomorrow = tomorrow.toISOString().split("T")[0]; // Convert to YYYY-MM-DD
 
-      // Retrieve and trim the form values
-      const yourName = document.getElementById("yourName").value.trim();
-      const phoneNumber = document.getElementById("phoneNumber").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const persons = document.getElementById("persons").value;
-      const date = document.getElementById("date").value.trim();
+    dateInput.min = formattedTomorrow; // Set min attribute to tomorrow's date
+  });
+  document.querySelectorAll("input[type='time']").forEach(function(input) {
+    input.addEventListener("input", function() {
+      let selectedTime = this.value;
+      let hour = parseInt(selectedTime.split(":")[0], 10);
 
-      let modalMessageText = "";
-
-      // Check if any required field is empty and set the modal message accordingly
-      if (yourName === "" || phoneNumber === "" || email === "" || persons === "" || date === "") {
-        modalMessageText = "Please fill in all the required fields.";
-      } else {
-        modalMessageText = "Thank you for your booking! We will contact you soon regarding your reservation.";
+      // Prevent selection outside the range
+      if (hour < 8 || hour > 22) {
+        this.value = ""; // Clear invalid input
       }
-
-      // Update the modal message text
-      document.getElementById("modalMessage").innerText = modalMessageText;
-
-      // Display the modal
-      document.getElementById("reservationModal").classList.remove("hidden");
     });
+  });
+  document.getElementById('timeoutInput').addEventListener('change', function() {
+    var timeIn = document.getElementById('timeinInput').value;
+    var timeOut = document.getElementById('timeoutInput').value;
 
-    // Close modal functionality
-    document.getElementById("closeModal").addEventListener("click", function () {
-      document.getElementById("reservationModal").classList.add("hidden");
-    });
-  </script>
+    if (!timeIn || !timeOut) return; // Ensure both fields are set
+
+    var timeInDate = new Date('1970-01-01T' + timeIn + ':00');
+    var timeOutDate = new Date('1970-01-01T' + timeOut + ':00');
+
+    var oneHourLater = new Date(timeInDate.getTime() + 60 * 60 * 1000);
+
+    if (timeOutDate < oneHourLater) {
+      const t = Swal.mixin({
+        toast: true,
+        position: "bottom-start",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      t.fire({
+        icon: "error",
+        title: "Time-out must be at least 1 hour after Time-in."
+      });
+      document.getElementById('timeoutInput').value = ''; // Reset invalid input
+    }
+  });
+
+  // Update venue image and label upon selection with fade transition
+  document.getElementById("venue").addEventListener("change", function() {
+    const venue = this.value;
+    // Default image is now reservation-default.png
+    let imgSrc = "/img/website-imgs/reservation-default.png";
+    let newVenueName = "Select a Venue";
+
+    switch (venue) {
+      case "1":
+        imgSrc = "/img/website-imgs/gazebo-hall.jpg";
+        newVenueName = "Gazebo Spot";
+        break;
+      case "2":
+        imgSrc = "/img/website-imgs/library-hall.jpg";
+        newVenueName = "Library Hall";
+        break;
+      case "3":
+        imgSrc = "/img/website-imgs/function-hall.jpg";
+        newVenueName = "Function Hall";
+        break;
+    }
+
+    // Update the venue name label
+    document.getElementById("venueNameLabel").textContent = newVenueName;
+
+    const venueImage = document.getElementById("venueImage");
+    // Fade out the current image
+    venueImage.style.opacity = 0;
+
+    // After the fade-out completes, change the image source and fade back in
+    setTimeout(function() {
+      venueImage.src = imgSrc;
+      venueImage.style.opacity = 1;
+    }, 500); // 500ms delay corresponds to the transition duration
+  });
+</script>
 @endsection
