@@ -90,4 +90,6 @@ class UserController extends Controller
         $user->delete();
         return redirect('/admin/users')->with('status', 'User Deleted Successfully');
     }
+
+    
 }

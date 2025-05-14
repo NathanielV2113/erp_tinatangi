@@ -137,36 +137,37 @@
             placeholder: 'Select Work Days',
         });
 
+        const workDaysSelect = document.getElementById("work_days");
+        const dayOffInput = document.getElementById("dayoff");
 
+        function updateDayOffValue() {
+            let allDays = ["0", "1", "2", "3", "4", "5", "6"]; // Sunday-Saturday values
+            let selectedWorkDays = Array.from(workDaysSelect.selectedOptions).map(option => option.value);
+            let unselectedDays = allDays.filter(day => !selectedWorkDays.includes(day));
+
+            console.log("Unselected Days:", unselectedDays);
+
+            // Update input value with unselected days
+            dayOffInput.value = unselectedDays.map(day => {
+                return workDaysSelect.querySelector(`option[value="${day}"]`).textContent;
+            }).join(", ");
+
+            // Force UI refresh for frameworks like Flux
+            setTimeout(() => {
+                dayOffInput.dispatchEvent(new Event("input"));
+            }, 50); // Small delay ensures UI updates correctly
+        }
         document.addEventListener("DOMContentLoaded", function() {
-            const workDaysSelect = document.getElementById("work_days");
-            const dayOffInput = document.getElementById("dayoff");
 
             if (!workDaysSelect || !dayOffInput) {
                 console.error("Error: Elements not found.");
                 return;
             }
-
-            function updateDayOffValue() {
-                let allDays = ["0", "1", "2", "3", "4", "5", "6"]; // Sunday-Saturday values
-                let selectedWorkDays = Array.from(workDaysSelect.selectedOptions).map(option => option.value);
-                let unselectedDays = allDays.filter(day => !selectedWorkDays.includes(day));
-
-                console.log("Unselected Days:", unselectedDays);
-
-                // Update input value with unselected days
-                dayOffInput.value = unselectedDays.map(day => {
-                    return workDaysSelect.querySelector(`option[value="${day}"]`).textContent;
-                }).join(", ");
-
-                // Force UI refresh for frameworks like Flux
-                setTimeout(() => {
-                    dayOffInput.dispatchEvent(new Event("input"));
-                }, 50); // Small delay ensures UI updates correctly
-            }
-
+            const tag = document.getElementById("dropdown");
+            const field = document.getElementById("selected-tags");
             // Use "change" instead of "click" for dropdown selections
-            workDaysSelect.addEventListener("change", updateDayOffValue);
+            field.addEventListener("click", updateDayOffValue);
+            tag.addEventListener("click", updateDayOffValue);
             updateDayOffValue(); // Ensure initial state updates
         });
 
