@@ -34,6 +34,8 @@ Route::get('/user', [\App\Http\Controllers\CrmController::class, 'homepage'])->m
 Route::get('tinatangi/home', [\App\Http\Controllers\CrmController::class, 'homepage'])->name('tinatangi.home');
 Route::get('tinatangi/menu', [\App\Http\Controllers\CrmController::class, 'menu'])->name('tinatangi.menu');
 Route::get('tinatangi/location', [\App\Http\Controllers\CrmController::class, 'location'])->name('tinatangi.location');
+Route::get('tinatangi/reservation', [\App\Http\Controllers\CrmController::class, 'reserve'])->name('tinatangi.reservation');
+Route::post('tinatangi/reservation/store', [\App\Http\Controllers\ReservationController::class, 'store'])->name('tinatangi.reservation.store');
 Route::get('tinatangi/faq', [\App\Http\Controllers\CrmController::class, 'faq'])->name('tinatangi.faq');
 
 require __DIR__ . '/auth.php';
