@@ -43,6 +43,9 @@
 
                         </table>
                     </div>
+                    <div class="join mt-3 dark:bg-neutral-800">
+                        {{ $users->links() }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -70,12 +73,12 @@
                 </div>
                 <div class="mb-3">
                     <label for="">Role</label>
-                    <select name="roles[]" class="input" multiple>
+                    <flux:select name="roles[]" class="input" multiple>
                         <option value="">Select Role</option>
                         @foreach ($roles as $role)
                         <option value="{{ $role }}">{{ $role }}</option>
                         @endforeach
-                    </select>
+                    </flux:select>
                 </div>
 
                 <div class="flex">

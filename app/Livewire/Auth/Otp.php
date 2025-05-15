@@ -33,8 +33,10 @@ class Otp extends Component
                             </div>
                         </div>
             ';
+        ob_start();
         $email = new SendEmail();
         $email->sendEmail($data);
+        ob_end_clean();
         return view('livewire.auth.otp', ['request' => $request, 'otp' => $otp]);
     }
 }

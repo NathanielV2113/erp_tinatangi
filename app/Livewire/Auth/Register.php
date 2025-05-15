@@ -37,7 +37,7 @@ class Register extends Component
         $validated['password'] = Hash::make($validated['password']);
 
         event(new Registered(($user = User::create($validated))));
-
+        $user->syncRoles('user');
         Auth::login($user);
 
         return redirect()->route('home')->with('success', 'Registration successful. Welcome to Tinatangi Cafe!');

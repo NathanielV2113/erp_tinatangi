@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('gender');
             $table->date('birthdate')->nullable();
             $table->string('email')->unique();
+            $table->unsignedBigInteger('schedule')->nullable();
             $table->string('phone')->nullable();
             $table->string('department')->nullable();
             $table->string('position')->nullable();

@@ -34,4 +34,8 @@ Route::middleware(['isHrm'])->group(function () {
     Route::get('hrm/scheduling/store', [ScheduleController::class, 'store'])->name('hrm.scheduling.store');
     Route::put('/hrm/scheduling/{schedule}/update', [ScheduleController::class, 'update'])->name('hrm.scheduling.update');
     Route::get('/hrm/scheduling/{scheduleId}/delete', [ScheduleController::class, 'destroy'])->name('hrm.scheduling.delete');
+    Route::get('hrm/scheduling/employee_scheduling', [HrmController::class, 'schedEmp'])->name('hrm.scheduling.employees');
+    Route::get('hrm/scheduling/employee_scheduling/set/{employee}', [ScheduleController::class, 'setSched'])->name('hrm.scheduling.employees.set');
+    Route::put('hrm/scheduling/employee_scheduling/give/{employeeId}/{scheduleId}', [ScheduleController::class, 'giveSched'])->name('hrm.scheduling.employees.give');
+    Route::get('hrm/scheduling/employee_scheduling/{employeeId}/unset', [ScheduleController::class, 'unsetSched'])->name('hrm.scheduling.employees.unset');
 });

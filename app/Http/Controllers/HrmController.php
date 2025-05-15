@@ -40,6 +40,12 @@ class HrmController extends Controller
         $scheds = Schedule::paginate(10);
         return view('modules.hrm.scheduling.scheduling', compact('scheds'));
     }
+    public function schedEmp(){
+        $departments = Department::all();
+        $employees = Employee::paginate(10); 
+        $schedules = Schedule::paginate(10);
+        return view('modules.hrm.scheduling.sched-emp', compact('employees', 'schedules', 'departments'));
+    }
     public function attendance(){
         return view('modules.hrm.scheduling.attendance');
     }

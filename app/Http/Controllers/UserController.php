@@ -12,7 +12,7 @@ class UserController extends Controller
     //
     public function index()
     {
-        $users = User::get();
+        $users = User::paginate(10);
         $roles = Role::pluck('name','name')->all();
         return view('admin.role-permission.user.index', [
             'users' => $users,

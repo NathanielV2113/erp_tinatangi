@@ -28,6 +28,7 @@ class UpdateEmployeeRequest extends FormRequest
             'last_name' => 'required|string|max:255',
             'birthdate' => 'nullable|date',
             'phone' => 'nullable|string|max:255',
+            'schedule' => 'nullable',
             'department' => 'nullable|string|max:255',
             'position' => 'nullable|string|max:255',
             'hire_date' => 'nullable|date',

@@ -25,8 +25,8 @@ class UpdateScheduleRequest extends FormRequest
             'type' => 'required',
             'start_time' => 'required',
             'end_time' => 'required',
-            'work_days' => 'required',
-            'dayoff' => 'required',
+            'work_days' => 'required|array|unique:schedules,work_days,',
+            'dayoff' => 'required|array',
         ];
     }
 }

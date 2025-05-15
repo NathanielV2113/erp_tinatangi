@@ -21,12 +21,14 @@ class StoreScheduleRequest extends FormRequest
      */
     public function rules(): array
     {
+        // dd($this->all());
+
         return [
-            'type' => 'required',
+            'type' => 'required|unique:schedules,type,'.$this->route('schedule'),
             'start_time' => 'required',
             'end_time' => 'required',
-            'work_days' => 'required',
-            'dayoff' => 'required',
+            'work_days' => 'required|array',
+            'dayoff' => 'required|array',
         ];
     }
 }

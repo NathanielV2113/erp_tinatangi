@@ -29,6 +29,7 @@ class StoreEmployeeRequest extends FormRequest
             'gender' => 'required|string|max:255',
             'birthdate' => 'nullable|date',
             'email' => 'required|email|max:255|unique:employees,email',
+            'schedule' => 'nullable',
             'phone' => 'nullable|string|max:255',
             'department' => 'nullable|string|max:255',
             'position' => 'nullable|string|max:255',

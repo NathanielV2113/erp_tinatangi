@@ -60,6 +60,26 @@
     </form>
 </div>
 <script>
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "F5") {
+            event.preventDefault();
+        }
+    });
+    document.addEventListener("keydown", function(event) {
+        if (event.ctrlKey && event.key === "r") {
+            event.preventDefault();
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Refreshing the page is not allowed.',
+            });
+        }
+    });
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+    };
+
     window.onload = function() {
         document.getElementById("loading-screen").style.display = "none";
     };

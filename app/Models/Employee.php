@@ -18,6 +18,7 @@ class Employee extends Model
         'gender',
         'birthdate',
         'email',
+        'schedule',
         'phone',
         'department',
         'position',
