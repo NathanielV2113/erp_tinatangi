@@ -6,6 +6,7 @@ use App\Http\Controllers\PayrollController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HrmController;
 use App\Http\Controllers\ScheduleController;
+use App\Models\Employee;
 
 Route::middleware(['isHrm'])->group(function () {
     Route::get('/hrm/employees', [EmployeeController::class, 'index'])->name('hrm.employees');
@@ -29,6 +30,7 @@ Route::middleware(['isHrm'])->group(function () {
     Route::get('hrm/payroll/generate', [PayrollController::class, 'generate'])->name('hrm.payroll.generate');
 
     Route::get('hrm/attendance', [HrmController::class, 'attendance'])->name('hrm.attendance');
+    Route::post('employee/timeIn/{user}', [EmployeeController::class, 'timeIn'])->name('attendance.store');
 
     Route::get('hrm/scheduling', [HrmController::class, 'scheduling'])->name('hrm.scheduling');
     Route::get('hrm/scheduling/store', [ScheduleController::class, 'store'])->name('hrm.scheduling.store');

@@ -60,6 +60,7 @@
                 <flux:navlist.item icon="building-library" :href="route('frm.treasury')" :current="request()->routeIs('frm.treasury')" wire:navigate>{{ __('Treasury') }}</flux:navlist.item>
                 <flux:navlist.item icon="banknotes" :href="route('frm.payroll')" :current="request()->routeIs('frm.payroll')" wire:navigate>{{ __('Payroll') }}</flux:navlist.item>
                 <flux:navlist.item icon="receipt-percent" :href="route('frm.tax')" :current="request()->routeIs('frm.tax')" wire:navigate>{{ __('Tax') }}</flux:navlist.item>
+                <flux:navlist.item icon="computer-desktop" :href="route('frm.pos')" :current="request()->routeIs('frm.pos')" wire:navigate>{{ __('POS') }}</flux:navlist.item>
             </flux:navlist.group>
             @endrole
             @role('scm')

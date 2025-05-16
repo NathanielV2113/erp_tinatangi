@@ -24,5 +24,8 @@ class FrmController extends Controller
     public function tax(){
         return view('modules.frm.frm-tax');
     }
+    public function pos(){
+        return view('modules.frm.frm-pos');
+    }
 
 }

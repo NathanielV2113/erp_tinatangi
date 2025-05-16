@@ -18,22 +18,116 @@
 
 
   <div class="grid grid-cols-1 mt-10 sm:grid-cols-2 gap-4">
-    <div><button class="btn btn-soft btn-success btn-block w-full sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Time in</button></div>
+    <form id="attendanceForm" method="POST" class="hidden">
+      @csrf
+    </form>
+    <div><button id="timeIn" onclick="timeIn({{ auth()->user()->id }})" class="btn btn-soft btn-success btn-block w-full sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Time in</button></div>
     <!-- ... -->
-    <div><button class="btn btn-soft btn-error btn-block w-full sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Time out</button></div>
+    <div><button id="timeOut" onclick="timeOut({{ auth()->user()->id }})" class="btn btn-soft btn-error btn-block w-full sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">Time out</button></div>
   </div>
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
   <script>
+    var timeIned = false;
+    const timeInButton = document.getElementById('timeIn');
+    const timeOutButton = document.getElementById('timeOut');
     document.addEventListener('DOMContentLoaded', function() {
+      timeInButton.addEventListener('click', function() {
+        if (timeIned) {
+          timeInButton.disabled = true;
+          timeOutButton.disabled = false;
+        } else if (!timeIned) {
+          timeInButton.disabled = false;
+          timeOutButton.disabled = false;
+        }
+      });
+      timeOutButton.addEventListener('click', function() {
+        if (timeIned) {
+          timeInButton.disabled = false;
+          timeOutButton.disabled = true;
+        } else if (!timeIned) {
+          timeInButton.disabled = false;
+          timeOutButton.disabled = false;
+        }
+      });
+    });
+
+    function timeIn(id) {
+      timeIned = true;
+      event.preventDefault(); // Prevent default form submission
+      console.log("Form submitted"); // Debug: check if the form is submitted
+      $.ajax({
+        url: 'employee/timeIn/' + id,
+        type: 'POST',
+        headers: {
+          "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+        },
+        data: {
+          "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+          user: id,
+        },
+        success: function(response) {
+          window.location.href = "{{ route('employee') }}";
+        },
+        error: function(xhr, status, error) {
+          console.error("Error:", error); // Debug: check for errors
+          // Handle the error response here if needed
+          // For example, you can show an error message to the user
+        }
+      }); // Submit the form programmatically
+    }
+
+    function timeOut(id) {
+      timeIned = false;
+    }
+
+
+
+
+
+
+    // ........................................................................................................................
+    // document.addEventListener('DOMContentLoaded', function() {
+    //   var calendarEl = document.getElementById('calendar');
+    //   var calendar = new FullCalendar.Calendar(calendarEl, {
+    //     initialView: 'dayGridMonth',
+    //     events: @json($events)
+    //   });
+    //   calendar.render();
+    // });
+
+    // Get the calendar container element
+    document.addEventListener('DOMContentLoaded', function() {
+      var events = @json($events);
+      // console.log("Loaded events:", events); // Debug: check the events array
+
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
-        events: @json($events)
+        headerToolbar: {
+          left: 'prev,today,next',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        eventTimeFormat: {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false // Set to true for 12-hour format with AM/PM
+        },
+        events: events,
+        eventClick: function(info) {
+          if (info.event.url) {
+            window.open(info.event.url);
+            info.jsEvent.preventDefault();
+          }
+        }
       });
       calendar.render();
     });
+
+
 
     function updateDateTime() {
       const now = new Date();
